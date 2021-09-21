@@ -39,6 +39,7 @@ public class Main{
                     break;
             }
         } while (command != 6);
+        scanner.close();
     }
 
     public static void SPL() {
