@@ -2,10 +2,13 @@
 
 public class Main{
     public static void main(String[] args) {
-        Matriks M1 = new Matriks();
+        InOut io = new InOut();
+        Matriks matrix1 = io.bacaTxtMatriks("matrix2.txt");
+        
+        io.tulisTxtMatriks("matrix3.txt", matrix1);
+        
 
-        M1.bacaTxtMatriks("matrix.txt");
-        M1.tulisTxtMatriks("matrix2.txt");
+        
         // /* Kamus */
         // int command;
         // Scanner scanner = new Scanner(System.in);
