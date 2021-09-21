@@ -1,45 +1,49 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args) {
-        /* Kamus */
-        int command;
-        Scanner scanner = new Scanner(System.in);
-        
-        /* Algoritma */
-        do {
-            System.out.println("MENU");
-            System.out.println("1. Sistem Persamaan Linier");
-            System.out.println("2. Determinan");
-            System.out.println("3. Matriks balikan");
-            System.out.println("4. Interpolasi Polinom");
-            System.out.println("5. Regresi linier berganda");
-            System.out.println("6. Keluar");
+        Matriks M1 = new Matriks();
 
-            command = scanner.nextInt();
-            switch (command) {
-                case 1:
-                    SPL();
-                    break;
+        M1.bacaTxtMatriks("matrix.txt");
+        M1.tulisTxtMatriks("matrix2.txt");
+        // /* Kamus */
+        // int command;
+        // Scanner scanner = new Scanner(System.in);
+        
+        // /* Algoritma */
+        // do {
+        //     System.out.println("MENU");
+        //     System.out.println("1. Sistem Persamaan Linier");
+        //     System.out.println("2. Determinan");
+        //     System.out.println("3. Matriks balikan");
+        //     System.out.println("4. Interpolasi Polinom");
+        //     System.out.println("5. Regresi linier berganda");
+        //     System.out.println("6. Keluar");
+
+        //     command = scanner.nextInt();
+        //     switch (command) {
+        //         case 1:
+        //             SPL();
+        //             break;
             
-                case 2:
-                    Determinan();
-                    break;
+        //         case 2:
+        //             Determinan();
+        //             break;
                 
-                case 3:
-                    Balikan();
-                    break;
+        //         case 3:
+        //             Balikan();
+        //             break;
             
-                case 4:
+        //         case 4:
                     
-                    break;
+        //             break;
                 
-                case 5:
+        //         case 5:
                     
-                    break;
-            }
-        } while (command != 6);
-        scanner.close();
+        //             break;
+        //     }
+        // } while (command != 6);
+        // scanner.close();
     }
 
     public static void SPL() {
