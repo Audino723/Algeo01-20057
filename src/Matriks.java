@@ -21,4 +21,34 @@ public class Matriks {
             }
         }
     }
+
+    public Matriks Transpose(){
+        Matriks m2 = new Matriks(this.col, this.row);
+        
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.col; j++) {
+                m2.Mat[j][i] = this.Mat[i][j];
+            }            
+        }
+
+        return m2;
+    }
+
+    public float Trace(){
+        /*
+        Asumsi : Matriks adalah matriks persegi
+        */
+    
+        float hasilTrace = 1;
+
+        for (int i = 0; i < Mat.length; i++) {
+            hasilTrace *= this.Mat[i][i];
+        }
+
+        return hasilTrace;
+    }
+
+    
+
+
 }

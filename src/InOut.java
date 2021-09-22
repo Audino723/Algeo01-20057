@@ -81,7 +81,6 @@ public class InOut {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-            
             for (i = 0; i < m1.row; i++) { // Masih hard coded harus diganti dengan efektif dari matriks
                 for (j = 0; j < m1.col; j++) {
                     bufferedWriter.write(Double.toString(m1.Mat[i][j]));

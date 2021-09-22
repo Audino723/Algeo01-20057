@@ -3,7 +3,7 @@
 public class Main{
     public static void main(String[] args) {
         InOut io = new InOut();
-        Matriks matrix1 = io.bacaTxtMatriks("matrix2.txt");
+        Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
         
         io.tulisTxtMatriks("matrix3.txt", matrix1);
         
