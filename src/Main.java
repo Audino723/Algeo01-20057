@@ -2,12 +2,22 @@
 
 public class Main{
     public static void main(String[] args) {
+<<<<<<< HEAD
         InOut io = new InOut();
         Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
+=======
+        /* InOut io = new InOut();
+        Matriks matrix1 = io.bacaTxtMatriks("matrix2.txt");
+>>>>>>> 1d9fd4951e3c641a6ba4e1f4157bf90060c18fbb
         
-        io.tulisTxtMatriks("matrix3.txt", matrix1);
-        
+        io.tulisTxtMatriks("matrix3.txt", matrix1); */
 
+        Matriks M;
+
+        M = Matriks.readMatrix();
+        Matriks.printMatrix(M);
+        double hasil = Matriks.Kofaktor(M);
+        System.out.println(hasil);
         
         // /* Kamus */
         // int command;
