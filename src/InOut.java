@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class InOut {
     
@@ -81,7 +82,6 @@ public class InOut {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-            
             for (i = 0; i < m1.row; i++) { // Masih hard coded harus diganti dengan efektif dari matriks
                 for (j = 0; j < m1.col; j++) {
                     bufferedWriter.write(Double.toString(m1.Mat[i][j]));
@@ -101,4 +101,44 @@ public class InOut {
 
     }
     
+    public Matriks bacaTerminalMatrix() {
+    //Kamus Lokal
+        int i, j;
+        int row,col;
+        Matriks matriks;
+    //Algoritma
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.print("Masukkan jumlah baris: "); row = scanner.nextInt();
+        System.out.print("Masukkan jumlah kolom: "); col = scanner.nextInt();
+        System.out.println("Masukkan elemen dalam matriks: ");
+        matriks = new Matriks(row,col);
+        for (i = 0; i < row; i++) {
+                for (j = 0; j < col; j++) {
+                    matriks.Mat[i][j] = scanner.nextDouble();
+            }
+        }
+        return matriks;
+    }
+    public void tulisTerminalMatrix(Matriks matriks) {
+    //Kamus Lokal
+        int i, j;
+        int row, col;
+    //Algoritma
+        row = matriks.row;
+        col = matriks.col;
+        System.out.println("Elemen matriks m adalah: ");
+        for(i = 0; i < row; i++)
+        {
+            for(j = 0; j < col; j++)
+            {
+                if(j == col-1) {
+                    System.out.print(matriks.Mat[i][j]);
+                } else {
+                    System.out.print(matriks.Mat[i][j] + " ");
+                }
+            }
+            System.out.println("");
+        }
+    }
 }

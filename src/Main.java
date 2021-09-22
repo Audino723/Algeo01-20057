@@ -3,12 +3,12 @@
 public class Main{
     public static void main(String[] args) {
         InOut io = new InOut();
-        Matriks matrix1 = io.bacaTxtMatriks("matrix2.txt");
-        
-        io.tulisTxtMatriks("matrix3.txt", matrix1);
+        Matriks m1 = io.bacaTxtMatriks("matrix.txt");
+        String[] solusi = FungsiSpl.splGauss(m1);
+        System.out.println(m1.detReduksiBaris());
         
 
-        
+       
         // /* Kamus */
         // int command;
         // Scanner scanner = new Scanner(System.in);
@@ -47,6 +47,24 @@ public class Main{
         //     }
         // } while (command != 6);
         // scanner.close();
+    }
+
+    public static void TesBacaTerminal(){
+        InOut io = new InOut();
+        Matriks matriks;
+
+        matriks = io.bacaTerminalMatrix();
+        io.tulisTerminalMatrix(matriks);
+        double hasil = Matriks.Kofaktor(matriks);
+        System.out.println(hasil);
+        
+    }
+
+    public static void TesBacaText(){
+        InOut io = new InOut();
+        Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
+        
+        io.tulisTxtMatriks("matrix3.txt", matrix1); 
     }
 
     public static void SPL() {
