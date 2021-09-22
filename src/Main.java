@@ -2,23 +2,10 @@
 
 public class Main{
     public static void main(String[] args) {
-<<<<<<< HEAD
-        InOut io = new InOut();
-        Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
-=======
-        /* InOut io = new InOut();
-        Matriks matrix1 = io.bacaTxtMatriks("matrix2.txt");
->>>>>>> 1d9fd4951e3c641a6ba4e1f4157bf90060c18fbb
-        
-        io.tulisTxtMatriks("matrix3.txt", matrix1); */
+        TesBacaTerminal();
+        TesBacaText();
 
-        Matriks M;
-
-        M = Matriks.readMatrix();
-        Matriks.printMatrix(M);
-        double hasil = Matriks.Kofaktor(M);
-        System.out.println(hasil);
-        
+       
         // /* Kamus */
         // int command;
         // Scanner scanner = new Scanner(System.in);
@@ -57,6 +44,24 @@ public class Main{
         //     }
         // } while (command != 6);
         // scanner.close();
+    }
+
+    public static void TesBacaTerminal(){
+        InOut io = new InOut();
+        Matriks matriks;
+
+        matriks = io.bacaTerminalMatrix();
+        io.tulisTerminalMatrix(matriks);
+        double hasil = Matriks.Kofaktor(matriks);
+        System.out.println(hasil);
+        
+    }
+
+    public static void TesBacaText(){
+        InOut io = new InOut();
+        Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
+        
+        io.tulisTxtMatriks("matrix3.txt", matrix1); 
     }
 
     public static void SPL() {
