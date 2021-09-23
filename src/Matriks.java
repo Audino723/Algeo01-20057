@@ -1,3 +1,4 @@
+import javax.print.attribute.standard.PrinterName;
 
 public class Matriks {
     // Atribut
@@ -41,13 +42,13 @@ public class Matriks {
         return isZero;
     }
 
-    public boolean isZeroColExist() {
+    public boolean isZeroColExist(int iStart, int jStart) {
         int i, j;
         boolean isZero;
         isZero = false;
-        for (i = 0; i < this.col; i++) {
+        for (i = iStart; i < this.col; i++) {
             isZero = true;
-            for (j = 0; j < this.row; j++) {
+            for (j = iStart; j < this.row; j++) {
                 if (this.Mat[j][i] != 0) {
                     isZero = false;
                 }
@@ -60,13 +61,87 @@ public class Matriks {
 
     }
 
+    public Matriks Transpose() {
+        Matriks m2 = new Matriks(this.col, this.row);
+
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.col; j++) {
+                m2.Mat[j][i] = this.Mat[i][j];
+            }
+        }
+
+        return m2;
+    }
+
+    public double Trace() {
+        /*
+         * Asumsi : Matriks adalah matriks persegi
+         */
+
+        double hasilTrace = 1;
+
+        for (int i = 0; i < Mat.length; i++) {
+            hasilTrace *= this.Mat[i][i];
+        }
+
+        return hasilTrace;
+    }
+
+    public Matriks reduksiMatriks(){
+        //KAMUS
+
+        //ALGORITMA
+        int i, j, k;
+        double ratio;
+        Matriks mTemp;
+        mTemp = this;
+
+        InOut io = new InOut();
+        io.tulisTerminalMatrix(mTemp);
+
+        for (i = 0; i < mTemp.row; ++i) {
+            k = 0;
+            if (isZeroColExist(i, i)){
+                continue;
+            }
+
+            while ((k+i < mTemp.row) && (mTemp.Mat[i+k][i] == 0)){
+                k++;
+                if (mTemp.Mat[i+k][i] != 0 ){
+                    for (j = 0; j< mTemp.col; ++j){
+                        mTemp.Mat[i][j] += mTemp.Mat[i+k][j];
+                    }
+                    break;
+                }
+
+            }
+
+            for (j = i + 1; j < mTemp.row; ++j) {
+                System.out.println(i + " " + j);
+                ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
+                for (k = i; k < mTemp.col; ++k) {
+                    mTemp.Mat[j][k] -= ratio * mTemp.Mat[i][k];
+                }
+            }
+        }
+
+        return mTemp;
+    }
+    public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
+        double det;
+        Matriks mTemp;
+        mTemp = this.reduksiMatriks();
+        det = mTemp.Trace();
+        return det;
+    }
+    /* Dimas
     public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
         int i, j, k;
         double ratio, det;
         Matriks mTemp;
         mTemp = this;
 
-        if (mTemp.isZeroColExist() || mTemp.isZeroRowExist()) {
+        if (mTemp.isZeroColExist(0,0) || mTemp.isZeroRowExist()) {
             det = 0.0;
         } else {
             for (i = 0; i < this.row - 1; i++) {
@@ -97,33 +172,7 @@ public class Matriks {
 
         return det;
     }
-
-    public Matriks Transpose() {
-        Matriks m2 = new Matriks(this.col, this.row);
-
-        for (int i = 0; i < this.row; i++) {
-            for (int j = 0; j < this.col; j++) {
-                m2.Mat[j][i] = this.Mat[i][j];
-            }
-        }
-
-        return m2;
-    }
-
-    public double Trace() {
-        /*
-         * Asumsi : Matriks adalah matriks persegi
-         */
-
-        double hasilTrace = 1;
-
-        for (int i = 0; i < Mat.length; i++) {
-            hasilTrace *= this.Mat[i][i];
-        }
-
-        return hasilTrace;
-    }
-
+    */
     public static double Kofaktor(Matriks m) {
         // Kamus Lokal
         int i, j, k;

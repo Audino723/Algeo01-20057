@@ -120,6 +120,7 @@ public class InOut {
         }
         return matriks;
     }
+    
     public void tulisTerminalMatrix(Matriks matriks) {
     //Kamus Lokal
         int i, j;

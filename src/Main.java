@@ -2,10 +2,7 @@
 
 public class Main{
     public static void main(String[] args) {
-        InOut io = new InOut();
-        Matriks m1 = io.bacaTxtMatriks("matrix.txt");
-        String[] solusi = FungsiSpl.splGauss(m1);
-        System.out.println(m1.detReduksiBaris());
+        TesBacaText();
         
 
        
@@ -62,9 +59,14 @@ public class Main{
 
     public static void TesBacaText(){
         InOut io = new InOut();
+        double det;
+
         Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
+        Matriks matrix2 = matrix1.reduksiMatriks();
+        det = matrix2.detReduksiBaris();
+        System.out.println(det + "hasil det: ");
         
-        io.tulisTxtMatriks("matrix3.txt", matrix1); 
+        io.tulisTxtMatriks("matrix3.txt", matrix2); 
     }
 
     public static void SPL() {
