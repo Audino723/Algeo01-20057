@@ -82,15 +82,15 @@ public class InOut {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-            for (i = 0; i < m1.row; i++) { // Masih hard coded harus diganti dengan efektif dari matriks
+            for (i = 0; i < m1.row; i++) { 
                 for (j = 0; j < m1.col; j++) {
                     bufferedWriter.write(Double.toString(m1.Mat[i][j]));
 
                     if (j != m1.col-1) {
                         bufferedWriter.write(" ");
                     }
-                } // Masih hard coded harus diganti dengan efektif dari matriks
-                if (i != 2) {
+                } 
+                if (i != m1.row-1) {
                     bufferedWriter.newLine();
                 }
             }

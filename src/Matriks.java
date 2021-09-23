@@ -1,5 +1,3 @@
-import javax.print.attribute.standard.PrinterName;
-
 public class Matriks {
     // Atribut
     public int row;
@@ -43,17 +41,12 @@ public class Matriks {
     }
 
     public boolean isZeroColExist(int iStart, int jStart) {
-        int i, j;
+        int i;
         boolean isZero;
-        isZero = false;
+        isZero = true;
         for (i = iStart; i < this.col; i++) {
-            isZero = true;
-            for (j = iStart; j < this.row; j++) {
-                if (this.Mat[j][i] != 0) {
-                    isZero = false;
-                }
-            }
-            if (isZero) {
+            if (this.Mat[i][jStart] != 0) {
+                isZero = false;
                 break;
             }
         }
@@ -127,6 +120,7 @@ public class Matriks {
 
         return mTemp;
     }
+    
     public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
         double det;
         Matriks mTemp;
