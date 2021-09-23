@@ -59,12 +59,14 @@ public class Main{
 
     public static void TesBacaText(){
         InOut io = new InOut();
-        double det;
 
         Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
+        io.tulisTerminalMatrix(matrix1);
         Matriks matrix2 = matrix1.reduksiMatriks();
-        det = matrix2.detReduksiBaris();
-        System.out.println(det + "hasil det: ");
+        io.tulisTerminalMatrix(matrix2);
+        Matriks matriks3 = FungsiSPL.splGauss(matrix1);
+        io.tulisTerminalMatrix(matriks3);
+        System.out.println(matrix2.detReduksiBaris() + "hasil det: ");
         
         io.tulisTxtMatriks("matrix3.txt", matrix2); 
     }
