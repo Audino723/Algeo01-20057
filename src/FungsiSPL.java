@@ -1,6 +1,7 @@
-import java.util.Scanner;
-
 public class FungsiSPL {
+    // public static String[] splGauss(Matriks matrix) {
+
+    // }
    
     public static Matriks splGauss(Matriks matrix) {
     /*
@@ -42,9 +43,6 @@ public class FungsiSPL {
                 coefHasil.Mat[i][j] = (-1) * (mTemp.Mat[i][j]);
             }
         }
-
-        InOut io = new InOut();
-        io.tulisTerminalMatrix(coefHasil);
 
         //Mencari hasil penyelesaian
         for (i = mTemp.row-1; i>=0; i--){
