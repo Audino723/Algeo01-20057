@@ -101,7 +101,7 @@ public class InOut {
 
     }
     
-    public static Matriks bacaTerminalMatrix() {
+    public Matriks bacaTerminalMatrix() {
     //Kamus Lokal
         int i, j;
         int row,col;
@@ -121,7 +121,7 @@ public class InOut {
         return matriks;
     }
     
-    public static void tulisTerminalMatrix(Matriks matriks) {
+    public void tulisTerminalMatrix(Matriks matriks) {
     //Kamus Lokal
         int i, j;
         int row, col;
