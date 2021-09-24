@@ -110,7 +110,8 @@ public class Matriks {
 
         return hasilTrace;
     }
-    
+
+
     public Matriks reduksiMatriks(){
         //KAMUS
         int i, j, k;
@@ -205,16 +206,6 @@ public class Matriks {
      * 
      * return det; }
      */
-    /*
-    public static double detKofaktor(Matriks m) {
-            
-        det = mTemp.Trace();
-        
-
-        return det;
-    }
-    */
-    
 
     public static Matriks ubahKaliBaris(Matriks m, int index, float x) {
         int i;
