@@ -2,10 +2,14 @@
 
 public class Main{
     public static void main(String[] args) {
-        TesBacaText();
+        // TesBacaText();
         
+        Matriks m;
+        m = InOut.bacaTerminalMatrix();
+        InOut.tulisTerminalMatrix(m);
+        m = Matriks.MatriksIdentitas(m);
+        InOut.tulisTerminalMatrix(m);
 
-       
         // /* Kamus */
         // int command;
         // Scanner scanner = new Scanner(System.in);

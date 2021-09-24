@@ -174,6 +174,152 @@ public class Matriks {
         return det;
     }
     */
+
+    public static Matriks ubahKaliBaris(Matriks m, int index, float x) {
+        int i;
+        for(i = 0; i < m.col; i++) {
+            m.Mat[index][i] *= x;
+        }
+        return m;
+    }
+
+    public static Matriks ubahKurangBaris(Matriks m, int index1, int index2, float konstanta) {
+        int i;
+        for(i = 0; i < m.col; i++) {
+            m.Mat[index1][i] *= konstanta;
+            m.Mat[index1][i] -= m.Mat[index2][i];
+        }
+        return m;
+    }
+
+     public static Matriks ubahTambahBaris(Matriks m, int index1, int index2) {
+        int i;
+        for(i = 0; i < m.col; i++) {
+            m.Mat[index1][i] += m.Mat[index2][i];
+        }
+        return m;
+    }
+
+    public static Matriks MatriksIdentitas(Matriks m) {
+        // I.S. Matriks m tidak memiliki satu baris atau satu kolom yang semuanya terdiri atas 0
+        // Kamus Lokal
+        int i, j;
+        int a;
+        float konstanta;
+        boolean identity;
+        // Algoritma
+        identity = true;
+        Matriks identitas = new Matriks(m.row,m.col);
+        for(i = 0; i < m.row; i++) {
+            for(j = 0; j < m.col; j++) {
+                if(i == j) {
+                    identitas.Mat[i][j] = 1;
+                } else {
+                    identitas.Mat[i][j] = 0;
+                }
+            }
+        }
+        
+        for(j = 0; j < m.col; j++) {
+            if(m.isZeroRowExist()) {
+                identity = false;
+                break;
+            }
+            if(m.Mat[j][j] == 0) {
+                a = j;
+                while(m.Mat[a][a] == 0) {
+                    if(m.Mat[a+1][a] != 0) {
+                        ubahTambahBaris(m,a,a+1);
+                        ubahTambahBaris(identitas,a,a+1);
+                        break;
+                    } 
+                    a++;
+                    if(a == m.col) {
+                        a = 0;
+                    }
+                }
+            }
+            if(m.Mat[j][j] != 1) {
+                konstanta = 1/(float)m.Mat[j][j];
+                ubahKaliBaris(m, j, konstanta);
+                ubahKaliBaris(identitas,j,konstanta);
+            }
+            for(i = j+1; i < m.row; i++) {
+                if(m.Mat[i][j] != 0) {
+                    konstanta = (float)m.Mat[j][j]/(float)m.Mat[i][j];
+                    ubahKurangBaris(m, i, j, konstanta);
+                    ubahKurangBaris(identitas,i,j,konstanta);
+                    if(isZeroColExist(m,0,j) || m.isZeroRowExist()) {
+                        identity = false;
+                        break;
+                    }
+                }
+                if(!identity) {
+                    break;
+                }
+            }
+        }
+        if(identity) {
+            for(j = m.col-1; j >= 0; j--) {
+            if(m.isZeroRowExist()) {
+                identity = false;
+                break;
+            }
+            if(m.Mat[j][j] == 0) {
+                a = j;
+                while(m.Mat[a][a] == 0) {
+                    if(m.Mat[a+1][a] != 0) {
+                        ubahTambahBaris(m,a,a+1);
+                        ubahTambahBaris(identitas,a,a+1);
+                        break;
+                    } 
+                    a++;
+                    if(a == m.col) {
+                        a = 0;
+                    }
+                }
+            }
+            if(m.Mat[j][j] != 1) {
+                konstanta = 1/(float)m.Mat[j][j];
+                ubahKaliBaris(m, j, konstanta);
+                ubahKaliBaris(identitas,j,konstanta);
+            }
+            for(i = j-1; i >= 0; i--) {
+                if(m.Mat[i][j] != 0) {
+                    konstanta = (float)m.Mat[j][j]/(float)m.Mat[i][j];
+                    ubahKurangBaris(m, i, j, konstanta);
+                    ubahKurangBaris(identitas,i,j,konstanta);
+                    if(isZeroColExist(m,0,j) || m.isZeroRowExist()) {
+                        identity = false;
+                        break;
+                    }
+                }
+                if(!identity) {
+                    break;
+                }
+            }
+        }
+            for(i = 0; i < m.col;i++) {
+                for(j=0;j<m.row;j++) {
+                    identitas.Mat[i][j] = Math.round((identitas.Mat[i][j] * 100)) / 100.0;
+                }
+            }
+            return identitas;
+        } else {
+            for(i = 0; i < m.row; i++) {
+                for(j = 0; j < m.col; j++) {
+                    if(i == j) {
+                        identitas.Mat[i][j] = 1;
+                    } else {
+                        identitas.Mat[i][j] = 0;
+                    }
+                }
+            }
+            return identitas;
+        }
+        
+        
+    }
     
     public static double Kofaktor(Matriks m) {
         // Kamus Lokal
