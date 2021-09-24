@@ -2,9 +2,8 @@
 
 public class Main{
     public static void main(String[] args) {
-        TesBacaText();
+        tesInvers();
         
-
        
         // /* Kamus */
         // int command;
@@ -46,13 +45,33 @@ public class Main{
         // scanner.close();
     }
 
+    public static void tesAdjoin(){
+        InOut io = new InOut();
+        Matriks matriks;
+
+        matriks = io.bacaTxtMatriks("adjoin.txt");
+        io.tulisTxtMatriks("kofaktor.txt", Matriks.matrixKofaktor(matriks));
+        io.tulisTxtMatriks("adjoin2.txt", Matriks.matrixKofaktor(matriks).Transpose());
+        
+    }
+
+    public static void tesInvers(){
+        InOut io = new InOut();
+        Matriks matriks;
+
+        matriks = io.bacaTxtMatriks("testinvers.txt");
+        io.tulisTxtMatriks("tesinvers1.txt", Matriks.balikanAdjoin(matriks));
+        
+        
+    }
+
     public static void TesBacaTerminal(){
         InOut io = new InOut();
         Matriks matriks;
 
         matriks = io.bacaTerminalMatrix();
         io.tulisTerminalMatrix(matriks);
-        double hasil = Matriks.Kofaktor(matriks);
+        double hasil = Matriks.detKofaktor(matriks);
         System.out.println(hasil);
         
     }

@@ -87,10 +87,10 @@ public class Matriks {
         return hasilTrace;
     }
 
-    public Matriks reduksiMatriks(){
-        //KAMUS
+    public Matriks reduksiMatriks() {
+        // KAMUS
 
-        //ALGORITMA
+        // ALGORITMA
         int i, j, k;
         double ratio;
         Matriks mTemp;
@@ -101,15 +101,15 @@ public class Matriks {
 
         for (i = 0; i < mTemp.row; ++i) {
             k = 0;
-            if (isZeroColExist(i, i)){
+            if (isZeroColExist(i, i)) {
                 continue;
             }
 
-            while ((k+i < mTemp.row) && (mTemp.Mat[i+k][i] == 0)){
+            while ((k + i < mTemp.row) && (mTemp.Mat[i + k][i] == 0)) {
                 k++;
-                if (mTemp.Mat[i+k][i] != 0 ){
-                    for (j = 0; j< mTemp.col; ++j){
-                        mTemp.Mat[i][j] += mTemp.Mat[i+k][j];
+                if (mTemp.Mat[i + k][i] != 0) {
+                    for (j = 0; j < mTemp.col; ++j) {
+                        mTemp.Mat[i][j] += mTemp.Mat[i + k][j];
                     }
                     break;
                 }
@@ -127,6 +127,7 @@ public class Matriks {
 
         return mTemp;
     }
+
     public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
         double det;
         Matriks mTemp;
@@ -134,46 +135,26 @@ public class Matriks {
         det = mTemp.Trace();
         return det;
     }
-    /* Dimas
-    public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
-        int i, j, k;
-        double ratio, det;
-        Matriks mTemp;
-        mTemp = this;
 
-        if (mTemp.isZeroColExist(0,0) || mTemp.isZeroRowExist()) {
-            det = 0.0;
-        } else {
-            for (i = 0; i < this.row - 1; i++) {
-                if (mTemp.Mat[i][i] == 0.0) {
-                    for (k = i + 1; k < mTemp.row; k++) {
-                        if (mTemp.Mat[k][i] != 0){
-                            for (j=i;j<mTemp.col;j++){
-                                mTemp.Mat[i][j] += mTemp.Mat[k][j];
-                            }
-                        }
-                        if (k == mTemp.row-1 && mTemp.Mat[i][i] == 0){
-                            k = 0;
-                        }
-                    }
-                } else {
-                    for (j = i + 1; j < this.row; j++) {
-                        ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
-
-                        for (k = 0; k < this.col; k++) {
-                            mTemp.Mat[j][k] = mTemp.Mat[j][k] - ratio * mTemp.Mat[i][k];
-                        }
-                    }
-                }
-
-            }
-            det = mTemp.Trace();
-        }
-
-        return det;
-    }
-    */
-    public static double Kofaktor(Matriks m) {
+    /*
+     * Dimas public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO
+     * DIAGONALNYA NOL int i, j, k; double ratio, det; Matriks mTemp; mTemp = this;
+     * 
+     * if (mTemp.isZeroColExist(0,0) || mTemp.isZeroRowExist()) { det = 0.0; } else
+     * { for (i = 0; i < this.row - 1; i++) { if (mTemp.Mat[i][i] == 0.0) { for (k =
+     * i + 1; k < mTemp.row; k++) { if (mTemp.Mat[k][i] != 0){ for
+     * (j=i;j<mTemp.col;j++){ mTemp.Mat[i][j] += mTemp.Mat[k][j]; } } if (k ==
+     * mTemp.row-1 && mTemp.Mat[i][i] == 0){ k = 0; } } } else { for (j = i + 1; j <
+     * this.row; j++) { ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
+     * 
+     * for (k = 0; k < this.col; k++) { mTemp.Mat[j][k] = mTemp.Mat[j][k] - ratio *
+     * mTemp.Mat[i][k]; } } }
+     * 
+     * } det = mTemp.Trace(); }
+     * 
+     * return det; }
+     */
+    public static double detKofaktor(Matriks m) {
         // Kamus Lokal
         int i, j, k;
         int kolom, baris;
@@ -203,13 +184,75 @@ public class Matriks {
                     itemp = 0;
                 }
                 if (i % 2 == 1) {
-                    det += -1 * m.Mat[i][0] * Kofaktor(mtemp);
+                    det += -1 * m.Mat[i][0] * detKofaktor(mtemp);
                 } else {
-                    det += m.Mat[i][0] * Kofaktor(mtemp);
+                    det += m.Mat[i][0] * detKofaktor(mtemp);
                 }
             }
             return det;
         }
+    }
+
+    public static Matriks matrixKofaktor(Matriks matrix) {
+        Matriks mRes, mTemp;
+        int p, q, m, n, i, j;
+        int dimensi = matrix.row;
+
+        mRes = new Matriks(dimensi, dimensi);
+        mTemp = new Matriks(dimensi - 1, dimensi - 1);
+
+        for (q = 0; q < dimensi; q++) {
+            for (p = 0; p < dimensi; p++) {
+                m = 0;
+                n = 0;
+                for (i = 0; i < dimensi; i++) {
+                    for (j = 0; j < dimensi; j++) {
+                        if (i != q && j != p) {
+                            mTemp.Mat[m][n] = matrix.Mat[i][j];
+                            if (n < (dimensi - 2))
+                                n++;
+                            else {
+                                n = 0;
+                                m++;
+                            }
+                        }
+                    }
+                }
+                mRes.Mat[q][p] = Math.pow(-1, q + p) * detKofaktor(mTemp);
+            }
+        }
+        return mRes;
+    }
+
+    public static Matriks balikanAdjoin(Matriks matrix) {
+        // Kamus Lokal
+        Matriks mRes, mAdjoin;
+        int dimensi = matrix.row, i, j;
+        double det;
+        
+        mRes = new Matriks(dimensi, dimensi);
+        mAdjoin = new Matriks(dimensi,dimensi);
+        det = detKofaktor(matrix);
+
+        if (det == 0) {
+
+        } else {
+            if (dimensi == 2) {
+                mRes.Mat[0][0] = (1 / det) * matrix.Mat[1][1];
+                mRes.Mat[0][1] = (-1 / det) * matrix.Mat[0][1];
+                mRes.Mat[1][0] = (-1 / det) * matrix.Mat[1][0];
+                mRes.Mat[1][1] = (1 / det) * matrix.Mat[0][0];
+            } else{
+                mAdjoin = matrixKofaktor(matrix).Transpose();
+                for (i = 0; i < dimensi; i++) {
+                    for (j=0; j< dimensi;j++) {
+                        mRes.Mat[i][j] = (1 / det) * mAdjoin.Mat[i][j];
+                    }
+                }
+            }
+        }
+        return mRes;
+
     }
 
 }

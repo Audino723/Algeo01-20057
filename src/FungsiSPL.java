@@ -1,5 +1,5 @@
 public class FungsiSPL {
-    public static String[] splGauss(Matriks matrix) {
+    // public static String[] splGauss(Matriks matrix) {
 
-    }
+    // }
 }
