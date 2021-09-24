@@ -2,10 +2,8 @@
 
 public class Main{
     public static void main(String[] args) {
-        TesBacaText();
-        
+        // TesBacaText();
 
-       
         // /* Kamus */
         // int command;
         // Scanner scanner = new Scanner(System.in);
@@ -70,7 +68,7 @@ public class Main{
         io.tulisTerminalMatrix(matriks3);
 
         io.tulisPenyelesaianSPL(matriks3, matrix1.col-1);
-        
+
         System.out.println(matrix2.detReduksiBaris() + "hasil det: ");
         
         io.tulisTxtMatriks("matrix3.txt", matrix2); 
