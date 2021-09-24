@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Matriks {
     // Atribut
@@ -34,6 +33,26 @@ public class Matriks {
         return mTemp;
     }
 
+    //Perlu dimerge sama punya mikel
+    public boolean isRowSPLZero (int i, int jStart, int jMax){
+        /*
+        Mengembalikan true jika kolom spl pada matrix augmented bernilai nol semua, dengan kata lain tidak memiliki penyelesaian.
+        */
+            //KAMUS
+            boolean flag = true;
+            int j;
+    
+            //ALGORITMA
+            for (j = jStart; j < jMax; j ++){
+                if (this.Mat[i][j] != 0){
+                    flag = false;
+                    break;
+                }
+            }
+    
+            return flag;
+        }
+
     public boolean isZeroRowExist() {
         int i, j;
         boolean isZero;
@@ -52,12 +71,12 @@ public class Matriks {
         return isZero;
     }
 
-    public static boolean isZeroColExist(Matriks m, int iStart, int jStart) {
+    public boolean isZeroColExist(int iStart, int jStart) {
         int i;
         boolean isZero;
         isZero = true;
-        for (i = iStart; i < m.col; i++) {
-            if (m.Mat[i][jStart] != 0) {
+        for (i = iStart; i < this.row; i++) {
+            if (this.Mat[i][jStart] != 0) {
                 isZero = false;
                 break;
             }
@@ -102,7 +121,7 @@ public class Matriks {
         //ALGORITMA
         for (i = 0; i < mTemp.row; ++i) {
             k = 0;
-            if (isZeroColExist(this, i, i)){
+            if (this.isZeroColExist(i, i)){
                 continue;
             }
 
