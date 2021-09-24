@@ -146,6 +146,39 @@ public class Matriks {
 
         return mTemp;
     }
+
+    public Matriks konversiEselonMatriks(){
+        //KAMUS
+        Matriks mTemp = this.reduksiMatriks();
+        int i, j;
+        double temp;
+
+        //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
+        for (i = 0; i < this.row;++i){
+            if (mTemp.Mat[i][i] != 1 && (mTemp.Mat[i][i] != 0)){
+
+                temp = mTemp.Mat[i][i];
+                for (j = 0; j < this.col; j ++){
+                    mTemp.Mat[i][j] /= temp;
+                }
+            }
+        }
+
+        return mTemp;
+    }
+
+    public Matriks eselonTereduksiMatriks(){
+        //KAMUS
+        Matriks mTemp = this.reduksiMatriks();
+        int i, j;
+        double temp;
+
+        //ALGORITMA
+
+        return mTemp;
+    }
+
+
  
     public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
         double det;
