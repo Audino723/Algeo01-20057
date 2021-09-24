@@ -143,6 +143,38 @@ public class InOut {
         }
     }
 
+    public void tulisPenyelesaianSPL(Matriks coefHasil, int jumlahX){
+        //KAMUS
+        int i, j;
+        double temp;
+
+        //ALGORITMA
+        for (i=0; i<jumlahX; i++){
+            temp = coefHasil.Mat[i][0];
+            //Menampilkan X ke-
+            System.out.print("X" + (i+1) + " = ");
+
+            //Menampilkan penyelesaian dengan solusiunik
+            for (j = 1 ; j < coefHasil.col; j++){
+                temp += coefHasil.Mat[i][j] * coefHasil.Mat[j][0];
+            }
+            System.out.print(temp);
+
+            //Menampilkan penyelesaian bukan solusi unik
+            for (j = 1 ; j < coefHasil.col; j++){
+                if ((i!=j) && coefHasil.isRowSPLZero(j, 0, coefHasil.col-1)){
+                    if (coefHasil.Mat[i][j] != 0){
+                        System.out.print(" + (" + (coefHasil.Mat[i][j]) + "S" + (j+1) + ")");
+                    }
+                }
+            }
+
+            System.out.println();
+
+
+        }
+    }
+
     public static double[] bacaTerminalMatrixBalikan(Matriks m) {
     //Kamus Lokal
         int i;
