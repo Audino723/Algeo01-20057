@@ -142,4 +142,18 @@ public class InOut {
             System.out.println("");
         }
     }
+
+    public static double[] bacaTerminalMatrixBalikan(Matriks m) {
+    //Kamus Lokal
+        int i;
+        int row,col;
+    //Algoritma
+        Scanner scanner = new Scanner(System.in);
+        double[] B = new double[m.col];
+        System.out.println("Masukkan elemen dalam kolom B: ");
+        for (i = 0; i < m.col; i++) {
+            B[i] = scanner.nextDouble();
+        }
+        return B;
+    }
 }

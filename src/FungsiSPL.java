@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class FungsiSPL {
     
     
@@ -21,5 +23,22 @@ public class FungsiSPL {
         
         
         return mTemp;
+    }
+
+    public static double[] splMatriksBalikan(Matriks m) {
+        // Kamus Lokal
+        int i, j;
+        double[] B = new double[m.col];
+        double[] X = new double[m.col];
+        // Algoritma
+        B = InOut.bacaTerminalMatrixBalikan(m);
+        for(i = 0; i < m.row; i++) {
+            X[i] = 0;
+            for(j = 0; j < m.col; j++) {
+                X[i] += B[j] * m.Mat[i][j];
+            }
+            X[i] = Math.round((X[i]));
+        }
+        return X;
     }
 }
