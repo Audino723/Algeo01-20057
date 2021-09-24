@@ -82,15 +82,15 @@ public class InOut {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-            for (i = 0; i < m1.row; i++) { // Masih hard coded harus diganti dengan efektif dari matriks
+            for (i = 0; i < m1.row; i++) { 
                 for (j = 0; j < m1.col; j++) {
                     bufferedWriter.write(Double.toString(m1.Mat[i][j]));
 
                     if (j != m1.col-1) {
                         bufferedWriter.write(" ");
                     }
-                } // Masih hard coded harus diganti dengan efektif dari matriks
-                if (i != 2) {
+                } 
+                if (i != m1.row-1) {
                     bufferedWriter.newLine();
                 }
             }
@@ -141,5 +141,51 @@ public class InOut {
             }
             System.out.println("");
         }
+    }
+
+    public void tulisPenyelesaianSPL(Matriks coefHasil, int jumlahX){
+        //KAMUS
+        int i, j;
+        double temp;
+
+        //ALGORITMA
+        for (i=0; i<jumlahX; i++){
+            temp = coefHasil.Mat[i][0];
+            //Menampilkan X ke-
+            System.out.print("X" + (i+1) + " = ");
+
+            //Menampilkan penyelesaian dengan solusiunik
+            for (j = 1 ; j < coefHasil.col; j++){
+                temp += coefHasil.Mat[i][j] * coefHasil.Mat[j][0];
+            }
+            System.out.print(temp);
+
+            //Menampilkan penyelesaian bukan solusi unik
+            for (j = 1 ; j < coefHasil.col; j++){
+                if ((i!=j) && coefHasil.isRowSPLZero(j, 0, coefHasil.col-1)){
+                    if (coefHasil.Mat[i][j] != 0){
+                        System.out.print(" + (" + (coefHasil.Mat[i][j]) + "S" + (j+1) + ")");
+                    }
+                }
+            }
+
+            System.out.println();
+
+
+        }
+    }
+
+    public static double[] bacaTerminalMatrixBalikan(Matriks m) {
+    //Kamus Lokal
+        int i;
+        int row,col;
+    //Algoritma
+        Scanner scanner = new Scanner(System.in);
+        double[] B = new double[m.col];
+        System.out.println("Masukkan elemen dalam kolom B: ");
+        for (i = 0; i < m.col; i++) {
+            B[i] = scanner.nextDouble();
+        }
+        return B;
     }
 }
