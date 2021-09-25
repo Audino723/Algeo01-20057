@@ -90,8 +90,8 @@ public class FungsiSPL {
     public static double[] splMatriksBalikan(Matriks m) {
         // Kamus Lokal
         int i, j;
-        double[] B = new double[m.col];
-        double[] X = new double[m.col];
+        double[] B = new double[m.row];
+        double[] X = new double[m.row];
         // Algoritma
         B = InOut.bacaTerminalMatrixBalikan(m);
         for(i = 0; i < m.row; i++) {
@@ -102,5 +102,43 @@ public class FungsiSPL {
             X[i] = Math.round((X[i]));
         }
         return X;
+    }
+
+    public static double[] splCramer(Matriks m) {
+        // Kamus Lokal
+        int i, j, k;
+        int itemp, jtemp;
+        double []B = new double[m.row];
+        Matriks mtemp, mawal;
+        // Algoritma
+        mawal = new Matriks(m.row,m.row);
+        for(i = 0; i < m.row; i++) {
+            for(j = 0; j < m.col-1;j++) {
+                mawal.Mat[i][j] = m.Mat[i][j];
+            }
+        }
+
+        for(i = 0; i < m.row; i++) {
+            itemp = 0;
+            jtemp = 0;
+            mtemp = new Matriks(m.row,m.row);
+            for(j = 0; j < m.row;j++) {
+                jtemp = 0;
+                for(k = 0;k < m.col-1;k++) {
+                    if(i != k) {
+                        mtemp.Mat[itemp][jtemp] = m.Mat[j][k]; 
+                        jtemp++;
+                    } else {
+                        mtemp.Mat[itemp][jtemp] = m.Mat[j][m.col-1];
+                        jtemp++;
+                    }
+                }
+                itemp++;
+            }
+
+            B[i] = (float)Matriks.DeterminanKofaktor(mtemp) / (float)Matriks.DeterminanKofaktor(mawal);
+            B[i] = Math.round((B[i] * 100)) / 100.0;
+        }
+        return B;
     }
 }

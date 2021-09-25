@@ -121,7 +121,7 @@ public class InOut {
         return matriks;
     }
     
-    public void tulisTerminalMatrix(Matriks matriks) {
+    public static void tulisTerminalMatrix(Matriks matriks) {
     //Kamus Lokal
         int i, j;
         int row, col;
@@ -187,5 +187,23 @@ public class InOut {
             B[i] = scanner.nextDouble();
         }
         return B;
+    }
+
+    public static void tulisPenyelesaianSPLCramer (double[] B) {
+//        Kamus Lokal
+        int i;
+//        Algoritma
+        for(i = 0; i < B.length; i++) {
+            System.out.println("x" + i + " : " + B[i]);
+        }
+    }
+
+    public static void tulisPenyelesaianSPLBalikan (double[] B) {
+//        Kamus Lokal
+        int i;
+//        Algoritma
+        for(i = 0; i < B.length; i++) {
+            System.out.println("x" + i + " : " + B[i]);
+        }
     }
 }
