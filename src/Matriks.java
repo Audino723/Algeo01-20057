@@ -5,6 +5,7 @@ public class Matriks {
     public int col;
     public double[][] Mat; // Masih hard coded harus diganti dengan efektif dari matriks
     final int UNVAL_INDEX = -1;
+    final int UNVAL_VALUE = -999;
 
     // Method:
     Matriks(int row, int col) {
@@ -23,14 +24,25 @@ public class Matriks {
         }
     }
 
-    public Matriks copyMatriks(){
-        //KAMUS
-        Matriks mTemp = new Matriks(this.row, this.col);
+    public void undefMatriks(){
+        int i, j;
 
-        //ALGORITMA
-        mTemp.Mat = this.Mat.clone();
+        if (row > UNVAL_INDEX && col > UNVAL_INDEX) {
+            this.Mat = new double[this.row][this.col];
+            for (i = 0; i < row; i++) {
+                for (j = 0; j < col; j++) {
+                    this.Mat[i][j] = UNVAL_VALUE;
+                }
+            }
+        }
 
-        return mTemp;
+        this.col = UNVAL_INDEX;
+        this.row = UNVAL_INDEX;
+    }
+
+    public boolean isMatriksUndef(){
+
+        return (this.col == -1 && this.row == -1);
     }
 
     //Perlu dimerge sama punya mikel
@@ -111,7 +123,6 @@ public class Matriks {
         return hasilTrace;
     }
 
-
     public Matriks reduksiMatriks(){
         //KAMUS
         int i, j, k;
@@ -164,23 +175,54 @@ public class Matriks {
             }
         }
 
+        //Mengecek apakah terdapat solusi penyelesaian
+        for (i = 0; i < mTemp.row ; i++){
+            if (mTemp.isRowSPLZero(i, 0, mTemp.col-1) && (mTemp.Mat[i][mTemp.col-1] != 0)){
+                System.out.println("SPL Tidak memiliki penyelesaian");
+                mTemp.undefMatriks();
+                return mTemp;
+            }
+        }
+
         return mTemp;
     }
 
     public Matriks eselonTereduksiMatriks(){
         //KAMUS
-        Matriks mTemp = this.reduksiMatriks();
-        int i, j;
-        double temp;
+        Matriks mTemp = this.konversiEselonMatriks();
+        int i, j, k;
+        double ratio;
+        InOut io = new InOut();
 
         //ALGORITMA
 
+        for (i = 1; i < mTemp.row ; i ++){
+            if (isZeroColExist(0, i) || isRowSPLZero(i, 0, this.col)){
+                continue;
+            }
+            for (j = 0; j < mTemp.row; ++j) {
+                if (i!= j){
+                    ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
+                    for (k = i; k < mTemp.col ; k ++){
+                        mTemp.Mat[j][k] -= ratio * mTemp.Mat[i][k];
+                    }
+                }
+            }
+            
+
+        }
+
+        io.tulisTerminalMatrix(mTemp);
         return mTemp;
     }
 
+<<<<<<< HEAD
 
  
     public static double detReduksiBaris(Matriks m) { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
+=======
+    public double detReduksiBaris() {
+>>>>>>> 406a84118a9bc3b125e12c18cb292480d8f3bcc7
         double det;
         Matriks mTemp;
         mTemp = m.reduksiMatriks();

@@ -240,7 +240,6 @@ public class InOut {
     public static double[] bacaTerminalMatrixBalikan(Matriks m) {
     //Kamus Lokal
         int i;
-        int row,col;
     //Algoritma
         Scanner scanner = new Scanner(System.in);
         double[] B = new double[m.col];
@@ -249,5 +248,23 @@ public class InOut {
             B[i] = scanner.nextDouble();
         }
         return B;
+    }
+
+    public static void tulisPenyelesaianSPLCramer (double[] B) {
+//        Kamus Lokal
+        int i;
+//        Algoritma
+        for(i = 0; i < B.length; i++) {
+            System.out.println("x" + i + " : " + B[i]);
+        }
+    }
+
+    public static void tulisPenyelesaianSPLBalikan (double[] B) {
+//        Kamus Lokal
+        int i;
+//        Algoritma
+        for(i = 0; i < B.length; i++) {
+            System.out.println("x" + i + " : " + B[i]);
+        }
     }
 }
