@@ -340,7 +340,7 @@ public class Matriks {
         
     }
     
-    public static double Kofaktor(Matriks m) {
+    public static double DeterminanKofaktor(Matriks m) {
         // Kamus Lokal
         int i, j, k;
         int kolom, baris;
@@ -370,9 +370,9 @@ public class Matriks {
                     itemp = 0;
                 }
                 if (i % 2 == 1) {
-                    det += -1 * m.Mat[i][0] * Kofaktor(mtemp);
+                    det += -1 * m.Mat[i][0] * DeterminanKofaktor(mtemp);
                 } else {
-                    det += m.Mat[i][0] * Kofaktor(mtemp);
+                    det += m.Mat[i][0] * DeterminanKofaktor(mtemp);
                 }
             }
             return det;

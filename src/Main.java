@@ -2,7 +2,8 @@
 
 public class Main{
     public static void main(String[] args) {
-        TesBacaText();
+        // TesBacaText();
+        TesBacaTerminal();
 
         // /* Kamus */
         // int command;
@@ -47,11 +48,12 @@ public class Main{
     public static void TesBacaTerminal(){
         InOut io = new InOut();
         Matriks matriks;
-
+        double B[];
         matriks = io.bacaTerminalMatrix();
         io.tulisTerminalMatrix(matriks);
-        double hasil = Matriks.Kofaktor(matriks);
-        System.out.println(hasil);
+        B = new double[matriks.col];
+        B = FungsiSPL.splCramer(matriks);
+        InOut.tulisPenyelesaianSPLCramer(B);
         
     }
 
