@@ -169,12 +169,30 @@ public class Matriks {
 
     public Matriks eselonTereduksiMatriks(){
         //KAMUS
-        Matriks mTemp = this.reduksiMatriks();
-        int i, j;
-        double temp;
+        Matriks mTemp = this.konversiEselonMatriks();
+        int i, j, k;
+        double ratio;
+        InOut io = new InOut();
 
         //ALGORITMA
 
+        for (i = 1; i < mTemp.row ; i ++){
+            if (isZeroColExist(0, i) || isRowSPLZero(i, 0, this.col)){
+                continue;
+            }
+            for (j = 0; j < mTemp.row; ++j) {
+                if (i!= j){
+                    ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
+                    for (k = i; k < mTemp.col ; k ++){
+                        mTemp.Mat[j][k] -= ratio * mTemp.Mat[i][k];
+                    }
+                }
+            }
+            
+
+        }
+
+        io.tulisTerminalMatrix(mTemp);
         return mTemp;
     }
 

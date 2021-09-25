@@ -3,31 +3,13 @@ public class FungsiSPL {
 
     // }
    
-    public static Matriks splGauss(Matriks matrix) {
-    /*
-        Akan menampilkan solusi dari splGauss
-        Sebelum perhitungan, akan diinisialisasi sebuah matriks 1 x (column-1), yang akan menampung koefisien hasil perhitungan.
-    */
+    public static Matriks konversiCoefHasil(Matriks mTemp) {
         //KAMUS
-        Matriks mTemp = matrix.reduksiMatriks();
         int i, j, k;
-        double temp, ratio;
-        Matriks coefHasil = new Matriks(matrix.col-1, matrix.col-1);
-
-        //Inisialisasi coefHasil
+        double ratio;
+        Matriks coefHasil = new Matriks(mTemp.col-1, mTemp.col-1);
 
         //ALGORITMA
-        //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
-        for (i = 0; i < matrix.row;++i){
-            if (mTemp.Mat[i][i] != 1 && (mTemp.Mat[i][i] != 0)){
-
-                temp = mTemp.Mat[i][i];
-                for (j = 0; j < matrix.col; j ++){
-                    mTemp.Mat[i][j] /= temp;
-                }
-            }
-        }
-
         //Mengecek apakah terdapat solusi penyelesaian
         for (i = 0; i < mTemp.row ; i++){
             if (mTemp.isRowSPLZero(i, 0, mTemp.col-1) && (mTemp.Mat[i][mTemp.col-1] != 0)){
@@ -57,9 +39,54 @@ public class FungsiSPL {
             }
         }
 
-        return coefHasil; 
+        return coefHasil;
     }
 
+
+    public static Matriks splGauss(Matriks matrix) {
+    /*
+        Akan menampilkan solusi dari splGauss
+        Sebelum perhitungan, akan diinisialisasi sebuah matriks 1 x (column-1), yang akan menampung koefisien hasil perhitungan.
+    */
+        //KAMUS
+        Matriks mTemp = matrix.reduksiMatriks();
+        Matriks coefHasil;
+
+        //Inisialisasi coefHasil
+
+        //ALGORITMA
+        //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
+        mTemp = mTemp.konversiEselonMatriks();
+
+        //Mengubah ke coefHasil
+        coefHasil = konversiCoefHasil(mTemp);
+        
+
+        return coefHasil; 
+    }
+    
+    public static Matriks splGaussJordan(Matriks matrix) {
+        /*
+            Akan menampilkan solusi dari splGauss
+            Sebelum perhitungan, akan diinisialisasi sebuah matriks 1 x (column-1), yang akan menampung koefisien hasil perhitungan.
+        */
+            //KAMUS
+            Matriks mTemp = matrix.reduksiMatriks();
+            Matriks coefHasil;
+    
+            //Inisialisasi coefHasil
+    
+            //ALGORITMA
+            //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
+            mTemp = mTemp.eselonTereduksiMatriks();
+    
+            //Mengubah ke coefHasil
+            coefHasil = konversiCoefHasil(mTemp);
+            
+    
+            return coefHasil; 
+        }
+    
     public static double[] splMatriksBalikan(Matriks m) {
         // Kamus Lokal
         int i, j;

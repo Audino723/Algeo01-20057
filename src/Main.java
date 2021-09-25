@@ -79,19 +79,27 @@ public class Main{
     public static void TesBacaText(){
         InOut io = new InOut();
 
+        System.out.println("Membaca mattriks dari .txt");
         Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
         io.tulisTerminalMatrix(matrix1);
+        System.out.println();
 
+        System.out.println("Menampilkan matriks tereduksi");
         Matriks matrix2 = matrix1.reduksiMatriks();
         io.tulisTerminalMatrix(matrix2);
-
+        System.out.println();
+        
+        System.out.println("Menampilkan matriks dengan eselon Tereduksi matriks");
+        Matriks matriks3 = FungsiSPL.splGaussJordan(matrix1);
+        System.out.println();
+        
+        /*
+        System.out.println("Menampilkan matriks dengan spl Gauss");
         Matriks matriks3 = FungsiSPL.splGauss(matrix1);
         io.tulisTerminalMatrix(matriks3);
+        */
 
-        io.tulisPenyelesaianSPL(matriks3, matrix1.col-1);
-
-        System.out.println(matrix2.detReduksiBaris() + "hasil det: ");
-        
+        io.tulisPenyelesaianSPL(matriks3, matrix1.col-1);        
         io.tulisTxtMatriks("matrix3.txt", matrix2); 
     }
 
