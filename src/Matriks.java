@@ -5,6 +5,7 @@ public class Matriks {
     public int col;
     public double[][] Mat; // Masih hard coded harus diganti dengan efektif dari matriks
     final int UNVAL_INDEX = -1;
+    final int UNVAL_VALUE = -999;
 
     // Method:
     Matriks(int row, int col) {
@@ -23,14 +24,25 @@ public class Matriks {
         }
     }
 
-    public Matriks copyMatriks(){
-        //KAMUS
-        Matriks mTemp = new Matriks(this.row, this.col);
+    public void undefMatriks(){
+        int i, j;
 
-        //ALGORITMA
-        mTemp.Mat = this.Mat.clone();
+        if (row > UNVAL_INDEX && col > UNVAL_INDEX) {
+            this.Mat = new double[this.row][this.col];
+            for (i = 0; i < row; i++) {
+                for (j = 0; j < col; j++) {
+                    this.Mat[i][j] = UNVAL_VALUE;
+                }
+            }
+        }
 
-        return mTemp;
+        this.col = UNVAL_INDEX;
+        this.row = UNVAL_INDEX;
+    }
+
+    public boolean isMatriksUndef(){
+
+        return (this.col == -1 && this.row == -1);
     }
 
     //Perlu dimerge sama punya mikel
@@ -111,7 +123,6 @@ public class Matriks {
         return hasilTrace;
     }
 
-
     public Matriks reduksiMatriks(){
         //KAMUS
         int i, j, k;
@@ -164,6 +175,15 @@ public class Matriks {
             }
         }
 
+        //Mengecek apakah terdapat solusi penyelesaian
+        for (i = 0; i < mTemp.row ; i++){
+            if (mTemp.isRowSPLZero(i, 0, mTemp.col-1) && (mTemp.Mat[i][mTemp.col-1] != 0)){
+                System.out.println("SPL Tidak memiliki penyelesaian");
+                mTemp.undefMatriks();
+                return mTemp;
+            }
+        }
+
         return mTemp;
     }
 
@@ -196,9 +216,7 @@ public class Matriks {
         return mTemp;
     }
 
-
- 
-    public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
+    public double detReduksiBaris() {
         double det;
         Matriks mTemp;
         mTemp = this.reduksiMatriks();

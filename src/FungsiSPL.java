@@ -2,7 +2,9 @@ public class FungsiSPL {
     // public static String[] splGauss(Matriks matrix) {
 
     // }
-   
+    
+
+
     public static Matriks konversiCoefHasil(Matriks mTemp) {
         //KAMUS
         int i, j, k;
@@ -10,13 +12,6 @@ public class FungsiSPL {
         Matriks coefHasil = new Matriks(mTemp.col-1, mTemp.col-1);
 
         //ALGORITMA
-        //Mengecek apakah terdapat solusi penyelesaian
-        for (i = 0; i < mTemp.row ; i++){
-            if (mTemp.isRowSPLZero(i, 0, mTemp.col-1) && (mTemp.Mat[i][mTemp.col-1] != 0)){
-                System.out.println("SPL Tidak memiliki penyelesaian");
-                return mTemp;
-            }
-        }
 
         //Mengubah ke dalam matrix coefHasil
         for (i = 0; i < mTemp.row ; i ++ ){
@@ -58,11 +53,14 @@ public class FungsiSPL {
         //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
         mTemp = mTemp.konversiEselonMatriks();
 
-        //Mengubah ke coefHasil
-        coefHasil = konversiCoefHasil(mTemp);
-        
+        if (!mTemp.isMatriksUndef()){
+            //Mengubah ke coefHasil
+            coefHasil = konversiCoefHasil(mTemp);
+            return coefHasil; 
+        } else{
+            return mTemp;
+        }
 
-        return coefHasil; 
     }
     
     public static Matriks splGaussJordan(Matriks matrix) {
@@ -79,12 +77,17 @@ public class FungsiSPL {
             //ALGORITMA
             //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
             mTemp = mTemp.eselonTereduksiMatriks();
-    
-            //Mengubah ke coefHasil
-            coefHasil = konversiCoefHasil(mTemp);
+
+            //Mengecek apakah undef
+            if (!mTemp.isMatriksUndef()){
+                //Mengubah ke coefHasil
+                coefHasil = konversiCoefHasil(mTemp);
+                return coefHasil; 
+            } else{
+                return mTemp;
+            }
             
     
-            return coefHasil; 
         }
     
     public static double[] splMatriksBalikan(Matriks m) {
@@ -136,7 +139,7 @@ public class FungsiSPL {
                 itemp++;
             }
 
-            B[i] = (float)Matriks.DeterminanKofaktor(mtemp) / (float)Matriks.DeterminanKofaktor(mawal);
+            B[i] = (float)Matriks.detKofaktor(mtemp) / (float)Matriks.detKofaktor(mawal);
             B[i] = Math.round((B[i] * 100)) / 100.0;
         }
         return B;

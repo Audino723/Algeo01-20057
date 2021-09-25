@@ -68,7 +68,6 @@ public class Main{
     public static void TesBacaTerminal(){
         InOut io = new InOut();
         Matriks matriks;
-        double B[];
         matriks = io.bacaTerminalMatrix();
         io.tulisTerminalMatrix(matriks);
         double hasil = Matriks.detKofaktor(matriks);

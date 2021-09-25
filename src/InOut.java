@@ -121,7 +121,7 @@ public class InOut {
         return matriks;
     }
     
-    public static void tulisTerminalMatrix(Matriks matriks) {
+    public void tulisTerminalMatrix(Matriks matriks) {
     //Kamus Lokal
         int i, j;
         int row, col;
@@ -178,7 +178,6 @@ public class InOut {
     public static double[] bacaTerminalMatrixBalikan(Matriks m) {
     //Kamus Lokal
         int i;
-        int row,col;
     //Algoritma
         Scanner scanner = new Scanner(System.in);
         double[] B = new double[m.col];
