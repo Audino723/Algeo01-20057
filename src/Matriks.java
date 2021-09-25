@@ -180,10 +180,10 @@ public class Matriks {
 
 
  
-    public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
+    public static double detReduksiBaris(Matriks m) { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
         double det;
         Matriks mTemp;
-        mTemp = this.reduksiMatriks();
+        mTemp = m.reduksiMatriks();
         det = mTemp.Trace();
         return det;
     }
