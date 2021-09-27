@@ -101,7 +101,7 @@ public class InOut {
 
     }
     
-    public Matriks bacaTerminalMatrix() {
+    public static Matriks bacaTerminalMatrix() {
     //Kamus Lokal
         int i, j;
         int row,col;
@@ -181,9 +181,9 @@ public class InOut {
         int row,col;
     //Algoritma
         Scanner scanner = new Scanner(System.in);
-        double[] B = new double[m.col];
+        double[] B = new double[m.row];
         System.out.println("Masukkan elemen dalam kolom B: ");
-        for (i = 0; i < m.col; i++) {
+        for (i = 0; i < m.row; i++) {
             B[i] = scanner.nextDouble();
         }
         return B;

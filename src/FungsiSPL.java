@@ -60,21 +60,27 @@ public class FungsiSPL {
         return coefHasil; 
     }
 
-    public static double[] splMatriksBalikan(Matriks m) {
+    public static void splMatriksBalikan(Matriks m) {
         // Kamus Lokal
         int i, j;
         double[] B = new double[m.row];
         double[] X = new double[m.row];
         // Algoritma
         B = InOut.bacaTerminalMatrixBalikan(m);
-        for(i = 0; i < m.row; i++) {
-            X[i] = 0;
-            for(j = 0; j < m.col; j++) {
-                X[i] += B[j] * m.Mat[i][j];
+        if(m.col != m.row) {
+            System.out.println("Tidak ada solusi SPL untuk matriks ini sebab tidak memiliki ukuran n x n");
+        } else {
+            m = Matriks.MatriksIdentitas(m);
+
+            for(i = 0; i < m.row; i++) {
+                X[i] = 0;
+                for(j = 0; j < m.col; j++) {
+                    X[i] += B[j] * m.Mat[i][j];
+                }
+                X[i] = Math.round((X[i]));
             }
-            X[i] = Math.round((X[i]));
+            InOut.tulisPenyelesaianSPLBalikan(B);
         }
-        return X;
     }
 
     public static double[] splCramer(Matriks m) {
@@ -109,7 +115,7 @@ public class FungsiSPL {
                 itemp++;
             }
 
-            B[i] = (float)Matriks.DeterminanKofaktor(mtemp) / (float)Matriks.DeterminanKofaktor(mawal);
+            B[i] = (float)Matriks.detKofaktor(mtemp) / (float)Matriks.detKofaktor(mawal);
             B[i] = Math.round((B[i] * 100)) / 100.0;
         }
         return B;

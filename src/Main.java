@@ -2,8 +2,13 @@
 
 public class Main{
     public static void main(String[] args) {
-    
-        TesBacaText();
+
+        Matriks M;
+        M = InOut.bacaTerminalMatrix();
+        InOut.tulisTerminalMatrix(M);
+        M =
+        FungsiSPL.splMatriksBalikan(M);
+
 
         // /* Kamus */
         // int command;
