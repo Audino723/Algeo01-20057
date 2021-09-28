@@ -206,8 +206,6 @@ public class Matriks {
                     }
                 }
             }
-            
-
         }
 
         return mTemp;

@@ -165,26 +165,48 @@ public class InOut {
             }
             return B;
         }
-    
+
     public void tulisTerminalMatrix(Matriks matriks) {
+        //Kamus Lokal
+            int i, j;
+            int row, col;
+        //Algoritma
+            row = matriks.row;
+            col = matriks.col;
+            System.out.println("Elemen matriks m adalah: ");
+            for(i = 0; i < row; i++)
+            {
+                for(j = 0; j < col; j++)
+                {
+                    if(j == col-1) {
+                        System.out.print(String.format("%.2f",matriks.Mat[i][j]));
+                    } else {
+                        System.out.print(String.format("%.2f", matriks.Mat[i][j])+ " ");
+                    }
+                }
+                System.out.println();
+            }
+        }
+
+    public void tulisTerminalMatrix(String fileName, Matriks matriks) {
     //Kamus Lokal
         int i, j;
         int row, col;
     //Algoritma
         row = matriks.row;
         col = matriks.col;
-        System.out.println("Elemen matriks m adalah: ");
+        print(fileName, ("Elemen matriks m adalah: \n"));
         for(i = 0; i < row; i++)
         {
             for(j = 0; j < col; j++)
             {
                 if(j == col-1) {
-                    System.out.print(String.format("%.2f",matriks.Mat[i][j]));
+                    print(fileName, (String.format("%.2f",matriks.Mat[i][j])));
                 } else {
-                    System.out.print((String.format("%.2f", matriks.Mat[i][j])) + " ");
+                    print(fileName, ((String.format("%.2f", matriks.Mat[i][j])) + " "));
                 }
             }
-            System.out.println("");
+            print(fileName, "\n");
         }
     }
 
@@ -216,9 +238,9 @@ public class InOut {
    
 
     public static void tulisPenyelesaianSPLCramer (Matriks m) {
-    //Kamus Lokal
+        //Kamus Lokal
         int i;
-    //Algoritma
+        //Algoritma
         Scanner scanner = new Scanner(System.in);
         double[] B = new double[m.row];
         System.out.println("Masukkan elemen dalam kolom B: ");
@@ -228,22 +250,29 @@ public class InOut {
     }
 
     public static void tulisPenyelesaianSPLBalikan (double[] B) {
-    //Kamus Lokal
+        //Kamus Lokal
         int i;
-    //Algoritma
+        //Algoritma
         for(i = 0; i < B.length; i++) {
             System.out.println("x" + i + " : " + (String.format("%.2f",B[i])));
         }
     }
 
-    public static void tulisPenyelesaianSPLNotAugmented (double[] B) {
-        //        Kamus Lokal
-                int i;
-        //        Algoritma
-                for(i = 0; i < B.length; i++) {
-                    System.out.println("x" + (i+1) + " : " + B[i]);
-                }
-            }
+    public void tulisPenyelesaianSPLNotAugmented (String fileName, double[] B) {
+        //Kamus Lokal
+        int i;
+        //Algoritma
+        for(i = 0; i < B.length; i++) {
+            print(fileName, ("x" + (i+1) + " : " + B[i] + "\n"));
+        }
+    }
+
+    public void tulisPenyelesaianDeterminan (String fileName, Matriks matrix, double det){  
+        System.out.println();
+        print(fileName, ("Matriks yang ingin dicari determinannya adalah:\n"));
+        tulisTerminalMatrix(fileName, matrix);
+        print(fileName, ("\nDeterminan dari matrix tersebut adalah " + det));
+    }
 
     public static void print(String fileName, String str) {
         System.out.print(str);

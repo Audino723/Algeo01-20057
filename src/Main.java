@@ -1,3 +1,5 @@
+// test case kalo input matriks salah untuk determinan kofatkro
+// test case undef untuk balikan adjoin
 import java.util.Scanner;
 
 
@@ -146,12 +148,11 @@ public class Main {
                     case 2:
                         matrix = FungsiSPL.splGaussJordan(matrix);
                         break;
-                    case 3:
-                        System.out.println("Belum jadi");
-                        break;
-
+                    case 3: 
+                        FungsiSPL.splMatriksBalikan(fileName, matrix);
+                        break;  
                     case 4:
-                        System.out.println("Belum jadi");
+                        FungsiSPL.splCramer(fileName, matrix);
                         break;
                     default:
                         opMethod = 0;
@@ -165,9 +166,7 @@ public class Main {
                 System.out.println("Hasil penyelesaian tidak valid, tidak dapat menggunakan metode tersebut");
             } else if (opMethod == 1 || opMethod == 2){
                 io.tulisPenyelesaianSPL(fileName, matrix);
-            } else{
-                System.out.println("Belum jadi");
-            }
+            } 
         }
 
     }
@@ -176,40 +175,51 @@ public class Main {
         Matriks matrix;
         double det;
         int opMethod;
-        String fileName, detStr;
+        String fileName;
 
         matrix = flowBacaMatriks();
-
+        if (matrix.isMatriksUndef()){
+            System.out.println("Matriks tidak valid");
+        }else{
+            System.out.println();
+            System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
+            System.out.print(">185 ");
+            fileName = scanner.next();
+            io.buatTxtBaru(fileName);
         
-        System.out.println();
-        System.out.println("| Matriks Berhasil dibaca. Pilih metode operasi mencari determinan! |");
-        System.out.println("1. Metode reduksi baris");
-        System.out.println("2. Metode ekspansi kofaktor");
+            System.out.println();
+            System.out.println("| Matriks Berhasil dibaca. Pilih metode operasi mencari determinan! |");
+            System.out.println("1. Metode reduksi baris");
+            System.out.println("2. Metode ekspansi kofaktor");
 
-        do {
+            do {
 
-            System.out.print(">180 ");
-            opMethod = scanner.nextInt();
+                System.out.print(">180 ");
+                opMethod = scanner.nextInt();
 
-            switch (opMethod) {
-                case 1:
-                    det = Matriks.detReduksiBaris(matrix);
-                    break;
+                switch (opMethod) {
+                    case 1:
+                        det = Matriks.detReduksiBaris(matrix);
+                        
+                        break;
 
-                case 2:
-                    det = Matriks.detKofaktor(matrix);
-                    break;
+                    case 2:
+                        det = Matriks.detKofaktor(matrix);
+                        break;
 
-                default:
-                    det = 0;
-                    opMethod = 0;
-                    System.out.println("Masukan untuk metode operasi mencari determinan matriks tidak valid!!");
-                    break;
-            }
-        } while (opMethod == 0);
+                    default:
+                        det = 0;
+                        opMethod = 0;
+                        System.out.println("Masukan untuk metode operasi mencari determinan matriks tidak valid!!");
+                        break;
+                }
+            } while (opMethod == 0);
 
-        detStr = Double.toString(det);
+            io.tulisPenyelesaianDeterminan(fileName, matrix, det);
+        }
 
+
+        /*
         System.out.println();
         System.out.println("| Operasi selesai dilakukan |");
         System.out.println("Matriks yang ingin dicari determinannya adalah:");
@@ -233,35 +243,52 @@ public class Main {
     }
 
     public static void Balikan() {
+        //KAMUS
         Matriks matrix;
         int opMethod;
-
+        String fileName;
+        //ALGORITMA
         matrix = flowBacaMatriks();
+        if (matrix.isMatriksUndef()){
+            System.out.println("Matriks tidak valid");
+        }else{            
+            System.out.println();
+            System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
+            System.out.print(">256 ");
+            fileName = scanner.next();
+            io.buatTxtBaru(fileName);
+            
+            System.out.println();
+            System.out.println("| Matriks Berhasil dibaca. Pilih metode operasi mencari determinan! |");
+            System.out.println("1. Metode adjoin");
+            System.out.println("2. Metode matriks identitas");
 
-        System.out.println();
-        System.out.println("| Matriks Berhasil dibaca. Pilih metode operasi mencari determinan! |");
-        System.out.println("1. Metode adjoin");
-        System.out.println("2. Metode matriks identitas");
+            do {
 
-        do {
+                System.out.print("> ");
+                opMethod = scanner.nextInt();
 
-            System.out.print("> ");
-            opMethod = scanner.nextInt();
+                switch (opMethod) {
+                    case 1:
+                        matrix = Matriks.balikanAdjoin(matrix);
+                        break;
+                    case 2:
+                        matrix = Matriks.MatriksIdentitas(matrix);
+                        break;
 
-            switch (opMethod) {
-                case 1:
+                    default:
+                        opMethod = 0;
+                        System.out.println("Masukkan untuk metode operasi mencari balikan matriks tidak valid!!");
+                        break;
+                }
+            } while (opMethod == 0);
 
-                    break;
-
-                case 2:
-                    break;
-
-                default:
-                    opMethod = 0;
-                    System.out.println("Masukkan untuk metode operasi mencari balikan matriks tidak valid!!");
-                    break;
-            }
-        } while (opMethod == 0);
+            if (matrix.isMatriksUndef()){
+                System.out.println("Hasil penyelesaian tidak valid, tidak dapat menggunakan metode tersebut");
+            } else if (opMethod == 1 || opMethod == 2){
+                io.tulisTerminalMatrix(fileName, matrix);
+            } 
+        }
 
     }
 

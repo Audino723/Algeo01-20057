@@ -44,7 +44,6 @@ public class FungsiSPL {
         return coefHasil;
     }
 
-
     public static Matriks splGauss(Matriks matrix) {
     /*
         Akan menampilkan solusi dari splGauss
@@ -97,13 +96,14 @@ public class FungsiSPL {
     
     }
     
-    public static double[] splMatriksBalikan(Matriks m) {
+    public static double[] splMatriksBalikan(String fileName, Matriks m) {
         // Kamus Lokal
         int i, j;
         double[] B = new double[m.row];
         double[] X = new double[m.row];
         Matriks wrong;
         Matriks mtemp;
+        InOut io = new InOut();
         mtemp = new Matriks(m.row,m.col);
 
         // Algoritma
@@ -122,20 +122,21 @@ public class FungsiSPL {
                     }
                     X[i] = Math.round((X[i] * 100)) / 100.0;
                 }
-                InOut.tulisPenyelesaianSPLNotAugmented(X);
+                io.tulisPenyelesaianSPLNotAugmented(fileName, X);
             }
         }
 
         return B;
     }
 
-    public static void splCramer(Matriks m) {
+    public static void splCramer(String fileName, Matriks m) {
         // Kamus Lokal
         int i, j, k;
         int itemp, jtemp;
         double []B = new double[m.row];
         boolean isDeterminanZero;
         Matriks mtemp, mawal;
+        InOut io = new InOut();
 
         // Algoritma
         isDeterminanZero = false;
@@ -174,7 +175,7 @@ public class FungsiSPL {
                 }
             }
             if(!isDeterminanZero) {
-                InOut.tulisPenyelesaianSPLNotAugmented(B);
+                io.tulisPenyelesaianSPLNotAugmented(fileName, B);
             }
         } else {
             System.out.println("Tidak ada penyelesaian SPL Cramer pada matriks ini, sebab tidak berbentuk n x n");
