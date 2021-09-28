@@ -101,17 +101,25 @@ public class FungsiSPL {
         int i, j;
         double[] B = new double[m.row];
         double[] X = new double[m.row];
-        Matriks wrong;
+        Matriks mvalue;
         Matriks mtemp;
         InOut io = new InOut();
         mtemp = new Matriks(m.row,m.col);
 
         // Algoritma
-        B = InOut.bacaTerminalMatrixBalikan(m);
+        mvalue = new Matriks(m.row,m.col-1);
+        for(i = 0; i < m.row;i++) {
+            for(j=0; j < m.col-1;j++) {
+                mvalue.Mat[i][j] = m.Mat[i][j];
+            }
+        }
+        for(i = 0; i < m.row; i++) {
+            B[i] = mvalue.Mat[i][m.col-1];
+        }
         if(m.col != m.row) {
             System.out.println("Tidak ada solusi SPL untuk matriks ini sebab tidak memiliki ukuran n x n");
         } else {
-            mtemp = Matriks.MatriksIdentitas(m);
+            mtemp = Matriks.MatriksIdentitas(mvalue);
             if(mtemp.isMatriksUndef()) {
                 System.out.println("Tidak ada solusi SPL untuk matriks ini");
             } else {
