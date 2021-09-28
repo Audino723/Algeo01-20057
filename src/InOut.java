@@ -78,9 +78,8 @@ public class InOut {
     public void tulisTxtMatriks(String fileName, Matriks m1) {
         int i, j;
         try {
-            FileOutputStream outputStream = new FileOutputStream(fileName);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
-            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+            FileWriter writer = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
             for (i = 0; i < m1.row; i++) { 
                 for (j = 0; j < m1.col; j++) {
@@ -94,6 +93,50 @@ public class InOut {
                     bufferedWriter.newLine();
                 }
             }
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();// TODO: handle exception
+        }
+
+    }
+
+    public void tulisTxtBaris(String fileName, String line) {
+        try {
+            FileWriter writer = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            bufferedWriter.write(line);
+            bufferedWriter.newLine();
+
+            
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();// TODO: handle exception
+        }
+
+    }
+
+    public void tulisTxtNewLine(String fileName) {
+        try {
+            FileWriter writer = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            bufferedWriter.newLine();
+
+            
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();// TODO: handle exception
+        }
+
+    }
+
+    public void buatTxtBaru (String fileName) {
+        try {
+            FileOutputStream outputStream = new FileOutputStream(fileName);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
+            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
             bufferedWriter.close();
         } catch (Exception e) {
             e.printStackTrace();// TODO: handle exception
@@ -120,6 +163,25 @@ public class InOut {
         }
         return matriks;
     }
+
+    public Matriks bacaTerminalMatrixSquare() {
+        //Kamus Lokal
+            int i, j;
+            int n;
+            Matriks matriks;
+        //Algoritma
+            Scanner scanner = new Scanner(System.in);
+            System.out.println();
+            System.out.print("Masukkan jumlah baris dan kolom: "); n = scanner.nextInt();
+            System.out.println("Masukkan elemen dalam matriks: ");
+            matriks = new Matriks(n,n);
+            for (i = 0; i < n; i++) {
+                    for (j = 0; j < n; j++) {
+                        matriks.Mat[i][j] = scanner.nextDouble();
+                }
+            }
+            return matriks;
+        }
     
     public static void tulisTerminalMatrix(Matriks matriks) {
     //Kamus Lokal
@@ -178,7 +240,6 @@ public class InOut {
     public static double[] bacaTerminalMatrixBalikan(Matriks m) {
     //Kamus Lokal
         int i;
-        int row,col;
     //Algoritma
         Scanner scanner = new Scanner(System.in);
         double[] B = new double[m.row];
@@ -189,21 +250,12 @@ public class InOut {
         return B;
     }
 
-    public static void tulisPenyelesaianSPLCramer (double[] B) {
+    public static void tulisPenyelesaianSPLNotAugmented (double[] B) {
 //        Kamus Lokal
         int i;
 //        Algoritma
         for(i = 0; i < B.length; i++) {
-            System.out.println("x" + i + " : " + B[i]);
-        }
-    }
-
-    public static void tulisPenyelesaianSPLBalikan (double[] B) {
-//        Kamus Lokal
-        int i;
-//        Algoritma
-        for(i = 0; i < B.length; i++) {
-            System.out.println("x" + i + " : " + B[i]);
+            System.out.println("x" + (i+1) + " : " + B[i]);
         }
     }
 }
