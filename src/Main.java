@@ -1,5 +1,6 @@
 // test case kalo input matriks salah untuk determinan kofatkro
 // test case undef untuk balikan adjoin
+
 import java.util.Scanner;
 
 
@@ -13,7 +14,7 @@ public class Main {
 
         /* Algoritma */
         do {
-            System.out.println("MENU");
+            System.out.println("\nMENU");
             System.out.println("1. Sistem Persamaan Linier");
             System.out.println("2. Determinan");
             System.out.println("3. Matriks balikan");
@@ -33,14 +34,12 @@ public class Main {
                 case 3:
                     Balikan();
                     break;
-
-                // case 4:
-
-                // break;
-
-                // case 5:
-
-                // break;
+                case 4:
+                    InterpolasiPolinom();
+                    break;
+                case 5:
+                    RegresiLinier();
+                    break;
 
                 default:
                     System.out.println("Masukkan command tidak valid");
@@ -52,63 +51,6 @@ public class Main {
 
     }
 
-    public static void tesAdjoin() {
-        InOut io = new InOut();
-        Matriks matriks;
-
-        matriks = io.bacaTxtMatriks("adjoin.txt");
-        io.tulisTxtMatriks("kofaktor.txt", Matriks.matrixKofaktor(matriks));
-        io.tulisTxtMatriks("adjoin2.txt", Matriks.matrixKofaktor(matriks).Transpose());
-
-    }
-
-    public static void tesInvers() {
-        InOut io = new InOut();
-        Matriks matriks;
-
-        matriks = io.bacaTxtMatriks("testinvers.txt");
-        io.tulisTxtMatriks("testinvers1.txt", Matriks.balikanAdjoin(matriks));
-
-    }
-
-    public static void TesBacaTerminal() {
-        InOut io = new InOut();
-        Matriks matriks;
-        matriks = io.bacaTerminalMatrix();
-        io.tulisTerminalMatrix(matriks);
-        double hasil = Matriks.detKofaktor(matriks);
-        System.out.println(hasil);
-
-    }
-
-    public static void TesBacaText() {
-        InOut io = new InOut();
-
-        System.out.println("Membaca mattriks dari .txt");
-        Matriks matrix1 = io.bacaTxtMatriks("matrix.txt");
-        io.tulisTerminalMatrix(matrix1);
-        System.out.println();
-
-        System.out.println("Menampilkan matriks tereduksi");
-        Matriks matrix2 = matrix1.reduksiMatriks();
-        io.tulisTerminalMatrix(matrix2);
-        System.out.println();
-        
-        System.out.println("Menampilkan matriks dengan eselon Tereduksi matriks");
-        Matriks matriks3 = FungsiSPL.splGaussJordan(matrix1);
-        System.out.println();
-        
-        /*
-        System.out.println("Menampilkan matriks dengan spl Gauss");
-        Matriks matriks3 = FungsiSPL.splGauss(matrix1);
-        io.tulisTerminalMatrix(matriks3);
-        */
-
-
-        System.out.println(Matriks.detReduksiBaris(matrix2) + "hasil det: ");
-
-        io.tulisTxtMatriks("matrix3.txt", matrix2);
-    }
 
     public static void SPL() {
         //KAMUS
@@ -218,28 +160,6 @@ public class Main {
             io.tulisPenyelesaianDeterminan(fileName, matrix, det);
         }
 
-
-        /*
-        System.out.println();
-        System.out.println("| Operasi selesai dilakukan |");
-        System.out.println("Matriks yang ingin dicari determinannya adalah:");
-        io.tulisTerminalMatrix(matrix);
-
-        System.out.println("Determinan dari matrix tersebut adalah " + detStr);
-
-        System.out.println();
-        System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
-        System.out.print("> ");
-        fileName = scanner.next();
-        /* Sementara
-        io.buatTxtBaru(fileName);
-        io.tulisTxtBaris(fileName, "Matriks yang ingin dicari determinannya adalah:");
-        io.tulisTxtNewLine(fileName);
-        io.tulisTxtMatriks(fileName, matrix);
-        io.tulisTxtNewLine(fileName);
-        io.tulisTxtBaris(fileName, "Determinan dari matrix tersebut adalah ");
-        io.tulisTxtBaris(fileName, detStr);
-        */
     }
 
     public static void Balikan() {
@@ -289,6 +209,98 @@ public class Main {
                 io.tulisTerminalMatrix(fileName, matrix);
             } 
         }
+
+    }
+
+    public static void InterpolasiPolinom(){
+        //KAMUS
+        Matriks matriksSPL;
+        Matriks matriks = new Matriks(1, 1);
+        int inputMethod;
+        int n, i, j;
+        String fileName;
+        double temp, predX;
+        Scanner scanner = new Scanner(System.in);
+
+        //ALGORITMA
+
+        do {
+            System.out.println();
+            System.out.println("| Pilih cara untuk membaca titik! |");
+            System.out.println("1. Baca dari terminal");
+            System.out.println("2. Baca dari file txt");
+
+            System.out.print(">236 ");
+            inputMethod = scanner.nextInt();
+
+            switch (inputMethod) {
+                case 1:
+                    do{
+                        System.out.println("Masukkan jumlah titik: ");
+                        n = scanner.nextInt();
+                    }while(n<=0);
+            
+                    matriks = new Matriks(n, 2);
+
+                    //Menerima semua titik
+                    for (i = 0; i < n ; i ++){
+                        for (j = 0 ; j < 2 ; j++){
+                            matriks.Mat[i][j] = scanner.nextDouble();
+                        }
+                    }                  
+
+                    break;
+
+                case 2:
+                    System.out.println();
+                    System.out.println("| Masukkan nama file beserta extensi txt |");
+                    System.out.print(">284 ");
+                    fileName = scanner.next();
+                    matriks = io.bacaTxtMatriks(fileName);
+                    break;
+
+                default:
+                    inputMethod = 0;
+                    System.out.println("Masukkan untuk metode membaca titik tidak valid");
+                    break;
+            }
+        } while (inputMethod == 0);
+        
+        //Menconvert titik menjadi splAugmented
+        n = matriks.col + 1;
+        matriksSPL = new Matriks(n, n+1);
+        for (i = 0; i < n ; i ++){
+            temp = matriks.Mat[i][0];
+            matriksSPL.Mat[i][n] =  matriks.Mat[i][1];
+            for (j = 0 ; j < n  ; j++){
+                matriksSPL.Mat[i][j] = Math.pow(temp, j);
+            }
+        }
+
+        //Menampilkan hasil Interpolasi Polinom
+        if (matriks.isMatriksUndef()){
+            System.out.println("Titik-titik tidak valid");
+        } else{
+            System.out.println();
+            System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
+            System.out.print(">285 ");
+            fileName = scanner.next();
+            io.buatTxtBaru(fileName);
+
+            //Mencari penyelesaian menggunakan Gauss-Jordan
+            matriksSPL = FungsiSPL.splGaussJordan(matriksSPL);
+
+            //Menampilkan penyelesaian
+            System.out.println("\n|Nilai x yang ingin diprediksi : |");
+            System.out.print(">295 ");
+            predX = scanner.nextDouble();
+
+            InOut.tulisPenyelesaianInterpolasi(fileName, matriksSPL, predX);
+        }
+
+    }
+
+    public static void RegresiLinier(){
 
     }
 

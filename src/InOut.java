@@ -17,6 +17,7 @@ public class InOut {
         return array;
     }
 
+    //PRIMITIF
     public int colTxt(String fileName) {
         int col = 0 ;
         try {
@@ -52,6 +53,7 @@ public class InOut {
         return row;
     }
 
+    //InOut TEXT
     public void buatTxtBaru (String fileName) {
         try {
             FileOutputStream outputStream = new FileOutputStream(fileName);
@@ -114,6 +116,7 @@ public class InOut {
 
     }
     
+    //InOut Terminal
     public Matriks bacaTerminalMatrix() {
     //Kamus Lokal
         int i, j;
@@ -166,7 +169,7 @@ public class InOut {
             return B;
         }
 
-    public void tulisTerminalMatrix(Matriks matriks) {
+    public static void tulisTerminalMatrix(Matriks matriks) {
         //Kamus Lokal
             int i, j;
             int row, col;
@@ -210,6 +213,7 @@ public class InOut {
         }
     }
 
+    //Inout SPL
     public void tulisPenyelesaianSPL(String fileName, Matriks coefHasil){
         //KAMUS
         int i, j;
@@ -234,8 +238,6 @@ public class InOut {
 
         }
     }
-
-   
 
     public static void tulisPenyelesaianSPLCramer (Matriks m) {
         //Kamus Lokal
@@ -288,40 +290,37 @@ public class InOut {
         }
     }
 
+    //Inout Interpolasi
+    public static void tulisPenyelesaianInterpolasi(String fileName, Matriks matriks, double predX){
+        //KAMUS
+        int i, n = matriks.col;
+        double temp = 0;
+
+        //ALGORITMA
+        //Menampilkan polinom
+        print(fileName, ("\nPolinom Interpolasi yang melewati " + n +  " titik tersebut adalah :\n"));
+
+        print(fileName, ("P" + (n-1) + "(x) ="));
+        for (i = 0; i<n; i++){
+            print(fileName, (String.format(" %.4f",matriks.Mat[i][0])));
+            
+            if (i > 1){
+                print(fileName, ("x^" + i));
+            } else if (i > 0){
+                print(fileName, ("x"));
+            }      
+            
+            if (i < n - 1){
+                print(fileName, " +");
+            }
+            
+            temp += matriks.Mat[i][0] * Math.pow(predX, i);
+        }
+
+        //Menampilkan hasil
+        print(fileName, ("\nP" + (n-1) + "(" + predX + ") = " + (String.format(" %.4f",temp))));
+        
+
+
+    }
 }
-
-
-    /*
-    
-
-    public void tulisTxtBaris(String fileName, String line) {
-        try {
-            FileWriter writer = new FileWriter(fileName, true);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-
-            bufferedWriter.write(line);
-            bufferedWriter.newLine();
-
-            
-            bufferedWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
-        }
-
-    }
-
-    public void tulisTxtNewLine(String fileName) {
-        try {
-            FileWriter writer = new FileWriter(fileName, true);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-
-            bufferedWriter.newLine();
-
-            
-            bufferedWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
-        }
-
-    }
-    */
