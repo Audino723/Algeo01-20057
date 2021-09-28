@@ -178,7 +178,6 @@ public class Matriks {
         //Mengecek apakah terdapat solusi penyelesaian
         for (i = 0; i < mTemp.row ; i++){
             if (mTemp.isRowSPLZero(i, 0, mTemp.col-1) && (mTemp.Mat[i][mTemp.col-1] != 0)){
-                System.out.println("SPL Tidak memiliki penyelesaian");
                 mTemp.undefMatriks();
                 return mTemp;
             }
@@ -192,7 +191,6 @@ public class Matriks {
         Matriks mTemp = this.konversiEselonMatriks();
         int i, j, k;
         double ratio;
-        InOut io = new InOut();
 
         //ALGORITMA
 
@@ -212,42 +210,16 @@ public class Matriks {
 
         }
 
-        io.tulisTerminalMatrix(mTemp);
         return mTemp;
     }
 
-<<<<<<< HEAD
-
- 
-    public static double detReduksiBaris(Matriks m) { // MASIH SALAH MASIH BUINGUNG KALO DIAGONALNYA NOL
-=======
-    public double detReduksiBaris() {
->>>>>>> 406a84118a9bc3b125e12c18cb292480d8f3bcc7
+    public static double detReduksiBaris(Matriks m) {
         double det;
         Matriks mTemp;
         mTemp = m.reduksiMatriks();
         det = mTemp.Trace();
         return det;
     }
-
-    /*
-     * Dimas public double detReduksiBaris() { // MASIH SALAH MASIH BUINGUNG KALO
-     * DIAGONALNYA NOL int i, j, k; double ratio, det; Matriks mTemp; mTemp = this;
-     * 
-     * if (mTemp.isZeroColExist(0,0) || mTemp.isZeroRowExist()) { det = 0.0; } else
-     * { for (i = 0; i < this.row - 1; i++) { if (mTemp.Mat[i][i] == 0.0) { for (k =
-     * i + 1; k < mTemp.row; k++) { if (mTemp.Mat[k][i] != 0){ for
-     * (j=i;j<mTemp.col;j++){ mTemp.Mat[i][j] += mTemp.Mat[k][j]; } } if (k ==
-     * mTemp.row-1 && mTemp.Mat[i][i] == 0){ k = 0; } } } else { for (j = i + 1; j <
-     * this.row; j++) { ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
-     * 
-     * for (k = 0; k < this.col; k++) { mTemp.Mat[j][k] = mTemp.Mat[j][k] - ratio *
-     * mTemp.Mat[i][k]; } } }
-     * 
-     * } det = mTemp.Trace(); }
-     * 
-     * return det; }
-     */
 
     public static Matriks ubahKaliBaris(Matriks m, int index, float x) {
         int i;

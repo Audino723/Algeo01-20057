@@ -34,6 +34,13 @@ public class FungsiSPL {
             }
         }
 
+        for (i=0; i<coefHasil.col; i++){
+            //Menjumlahkan penyelesaian dengan solusiunik
+            for (j = 1 ; j < coefHasil.col; j++){
+                coefHasil.Mat[i][0] += coefHasil.Mat[i][j] * coefHasil.Mat[j][0];
+            }
+        }
+
         return coefHasil;
     }
 
@@ -88,7 +95,7 @@ public class FungsiSPL {
             }
             
     
-        }
+    }
     
     public static double[] splMatriksBalikan(Matriks m) {
         // Kamus Lokal
