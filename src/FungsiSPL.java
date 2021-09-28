@@ -102,53 +102,83 @@ public class FungsiSPL {
         int i, j;
         double[] B = new double[m.row];
         double[] X = new double[m.row];
+        Matriks wrong;
+        Matriks mtemp;
+        mtemp = new Matriks(m.row,m.col);
+
         // Algoritma
         B = InOut.bacaTerminalMatrixBalikan(m);
-        for(i = 0; i < m.row; i++) {
-            X[i] = 0;
-            for(j = 0; j < m.col; j++) {
-                X[i] += B[j] * m.Mat[i][j];
+        if(m.col != m.row) {
+            System.out.println("Tidak ada solusi SPL untuk matriks ini sebab tidak memiliki ukuran n x n");
+        } else {
+            mtemp = Matriks.MatriksIdentitas(m);
+            if(mtemp.isMatriksUndef()) {
+                System.out.println("Tidak ada solusi SPL untuk matriks ini");
+            } else {
+                for(i = 0; i < m.row; i++) {
+                    X[i] = 0;
+                    for(j = 0; j < m.col; j++) {
+                        X[i] += B[j] * mtemp.Mat[i][j];
+                    }
+                    X[i] = Math.round((X[i] * 100)) / 100.0;
+                }
+                InOut.tulisPenyelesaianSPLNotAugmented(X);
             }
-            X[i] = Math.round((X[i]));
         }
-        return X;
+
+        return B;
     }
 
-    public static double[] splCramer(Matriks m) {
+    public static void splCramer(Matriks m) {
         // Kamus Lokal
         int i, j, k;
         int itemp, jtemp;
         double []B = new double[m.row];
+        boolean isDeterminanZero;
         Matriks mtemp, mawal;
+
         // Algoritma
-        mawal = new Matriks(m.row,m.row);
-        for(i = 0; i < m.row; i++) {
-            for(j = 0; j < m.col-1;j++) {
-                mawal.Mat[i][j] = m.Mat[i][j];
-            }
-        }
-
-        for(i = 0; i < m.row; i++) {
-            itemp = 0;
-            jtemp = 0;
-            mtemp = new Matriks(m.row,m.row);
-            for(j = 0; j < m.row;j++) {
-                jtemp = 0;
-                for(k = 0;k < m.col-1;k++) {
-                    if(i != k) {
-                        mtemp.Mat[itemp][jtemp] = m.Mat[j][k]; 
-                        jtemp++;
-                    } else {
-                        mtemp.Mat[itemp][jtemp] = m.Mat[j][m.col-1];
-                        jtemp++;
-                    }
+        isDeterminanZero = false;
+        if(m.row == m.col-1) {
+            mawal = new Matriks(m.row,m.row);
+            for(i = 0; i < m.row; i++) {
+                for(j = 0; j < m.col-1;j++) {
+                    mawal.Mat[i][j] = m.Mat[i][j];
                 }
-                itemp++;
             }
 
-            B[i] = (float)Matriks.detKofaktor(mtemp) / (float)Matriks.detKofaktor(mawal);
-            B[i] = Math.round((B[i] * 100)) / 100.0;
+            for(i = 0; i < m.row; i++) {
+                itemp = 0;
+                jtemp = 0;
+                mtemp = new Matriks(m.row,m.row);
+                for(j = 0; j < m.row;j++) {
+                    jtemp = 0;
+                    for(k = 0;k < m.col-1;k++) {
+                        if(i != k) {
+                            mtemp.Mat[itemp][jtemp] = m.Mat[j][k];
+                            jtemp++;
+                        } else {
+                            mtemp.Mat[itemp][jtemp] = m.Mat[j][m.col-1];
+                            jtemp++;
+                        }
+                    }
+                    itemp++;
+                }
+                if(Matriks.detKofaktor(mawal) == 0) {
+                    isDeterminanZero = true;
+                    System.out.println("Tidak ada penyelesaian SPL Cramer pada matriks ini, sebab determinan matriks adalah 0");
+                    break;
+                } else {
+                    B[i] = (float)Matriks.detKofaktor(mtemp) / (float)Matriks.detKofaktor(mawal);
+                    B[i] = Math.round((B[i] * 100)) / 100.0;
+                }
+            }
+            if(!isDeterminanZero) {
+                InOut.tulisPenyelesaianSPLNotAugmented(B);
+            }
+        } else {
+            System.out.println("Tidak ada penyelesaian SPL Cramer pada matriks ini, sebab tidak berbentuk n x n");
         }
-        return B;
+
     }
 }

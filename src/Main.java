@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthScrollBarUI;
 
 public class Main {
     public static int command;
@@ -103,8 +102,10 @@ public class Main {
         io.tulisTerminalMatrix(matriks3);
         */
 
-        io.tulisPenyelesaianSPL("matrix4.txt", matriks3);        
-        io.tulisTxtMatriks("matrix3.txt", matrix2); 
+
+        System.out.println(Matriks.detReduksiBaris(matrix2) + "hasil det: ");
+
+        io.tulisTxtMatriks("matrix3.txt", matrix2);
     }
 
     public static void SPL() {

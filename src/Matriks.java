@@ -352,15 +352,7 @@ public class Matriks {
             }
             return identitas;
         } else {
-            for(i = 0; i < m.row; i++) {
-                for(j = 0; j < m.col; j++) {
-                    if(i == j) {
-                        identitas.Mat[i][j] = 1;
-                    } else {
-                        identitas.Mat[i][j] = 0;
-                    }
-                }
-            }
+            identitas.undefMatriks();
             return identitas;
         }
         
