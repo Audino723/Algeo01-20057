@@ -484,7 +484,7 @@ public class Matriks {
         det = detKofaktor(matrix);
 
         if (det == 0) {
-
+            mRes.undefMatriks();
         } else {
             if (dimensi == 2) {
                 mRes.Mat[0][0] = (1 / det) * matrix.Mat[1][1];

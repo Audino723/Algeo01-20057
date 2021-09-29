@@ -1,5 +1,5 @@
 
 Hasil penyelesaian SPL : 
-X1 = 14.44
+X1 = 18.06
 X2 = 7.22
 X3 = 10.00

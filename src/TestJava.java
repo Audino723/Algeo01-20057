@@ -9,10 +9,12 @@ public class TestJava {
         nomor1();
         nomor2();
         nomor3();
+        nomor4();
         nomor5();
         nomor6a();
         nomor6b();
         nomor6c();
+        nomor7();
     }
 
     public static void nomor1() {
@@ -29,18 +31,12 @@ public class TestJava {
         input.add("1"); // operasi
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1b.txt"); // nama txt asal
-        input.add("test/Nomor1/Hasil1bgauss.txt"); // nama txt tujuan
+        input.add("test/Nomor1/Hasil1b.txt"); // nama txt tujuan
         input.add("1"); // metode operasi
         mainTest(input);
         input.clear();
 
-        input.add("1"); // operasi
-        input.add("2"); // metode baca dari txt
-        input.add("test/Nomor1/1b.txt"); // nama txt asal
-        input.add("test/Nomor1/Hasil1bgaussjordan.txt"); // nama txt tujuan
-        input.add("2"); // metode operasi
-        mainTest(input);
-        input.clear();
+        
 
         input.add("1"); // operasi
         input.add("2"); // metode baca dari txt
@@ -112,6 +108,17 @@ public class TestJava {
 
     }
 
+    public static void nomor4() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor4/4.txt"); // nama txt asal
+        input.add("test/Nomor4/Hasil4.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+        
+    }
     public static void nomor5() {
         ArrayList<String> input = new ArrayList<String>();
         input.add("1"); // operasi
@@ -215,8 +222,8 @@ public class TestJava {
         
         input.add("5"); // operasi
         input.add("2"); // metode baca dari txt
-        input.add("test/Nomor6/7.txt"); // nama txt asal
-        input.add("test/Nomor6/Hasil7.txt"); // nama txt tujuan
+        input.add("test/Nomor7/7.txt"); // nama txt asal
+        input.add("test/Nomor7/Hasil7.txt"); // nama txt tujuan
         input.add("50 76 29.3"); // nilai Prediksi
         mainTest(input);
         input.clear();
