@@ -51,7 +51,7 @@ public class Main {
 
     public static void SPL() {
         // KAMUS
-        Matriks matrix;
+        Matriks matrix, matriksRed = new Matriks(1 , 1), matriksHasil = new Matriks(1 , 1);
         int opMethod;
         InOut io = new InOut();
         String fileName;
@@ -211,7 +211,7 @@ public class Main {
 
     public static void InterpolasiPolinom() {
         // KAMUS
-        Matriks matriksSPL;
+        Matriks matriksSPL, matriksRed = new Matriks(1, 1);
         Matriks matriks = new Matriks(1, 1);
         int inputMethod;
         int n, i, j;
@@ -299,7 +299,7 @@ public class Main {
 
     public static void RegresiLinier() {
         // KAMUS
-        Matriks matriksRegresi, matriksHasil;
+        Matriks matriksRegresi, matriksHasil, matriksRed = new Matriks(1, 1);
         Matriks matriks = new Matriks(1, 1), predX;
         int inputMethod;
         int x, m, i, j, rowMat;

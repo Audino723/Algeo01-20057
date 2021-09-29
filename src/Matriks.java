@@ -149,12 +149,16 @@ public class Matriks {
         mTemp = this;
 
         //ALGORITMA
-        for (i = 0; i < mTemp.row; ++i) {
+        for (i = 0; (i < mTemp.row) && (i < mTemp.col-1) ; ++i) {
             k = 0;
-            if (this.isZeroColExist(i, i)) {
+
+            //Mengecek apakah ada satu column yang nol semua
+            if (i<mTemp.col-2 && this.isZeroColExist(i, i) ) {
                 continue;
             }
-            while ((k + i < mTemp.row) && (mTemp.Mat[i + k][i] == 0)) {
+
+            //Mengecek apakah ada nilai (i,i) yang nol
+            while ((i < mTemp.col-1) && (k + i < mTemp.row) && (mTemp.Mat[i + k][i] == 0)) {
                 k++;
                 if (mTemp.Mat[i + k][i] != 0) {
                     for (j = 0; j < mTemp.col; ++j) {
@@ -164,7 +168,8 @@ public class Matriks {
                 }
 
             }
-
+            
+            //Mengurangi sampai nol
             for (j = i + 1; j < mTemp.row; ++j) {
                 ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
                 for (k = i; k < mTemp.col; ++k) {
@@ -184,7 +189,7 @@ public class Matriks {
 
         //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
         for (i = 0; i < this.row;++i){
-            if (mTemp.Mat[i][i] != 1 && (mTemp.Mat[i][i] != 0)){
+            if ((i < mTemp.col) && mTemp.Mat[i][i] != 1 && (mTemp.Mat[i][i] != 0)){
 
                 temp = mTemp.Mat[i][i];
                 for (j = 0; j < this.col; j ++){
@@ -212,10 +217,13 @@ public class Matriks {
 
         //ALGORITMA
 
-        for (i = 1; i < mTemp.row ; i ++){
+        //Diiterasi dari baris ujung kiri atas, ke ujung kiri kanan. (i,i)
+        for (i = 1; (i < mTemp.row) && (i<mTemp.col-1) ; i ++){
             if (isZeroColExist(0, i) || isRowSPLZero(i, 0, this.col)){
                 continue;
             }
+
+            //Diiterasi dari nilai diagonal ke bawah
             for (j = 0; j < mTemp.row; ++j) {
                 if (i!= j){
                     ratio = mTemp.Mat[j][i] / mTemp.Mat[i][i];
@@ -225,7 +233,7 @@ public class Matriks {
                 }
             }
         }
-
+        
         return mTemp;
     }
 

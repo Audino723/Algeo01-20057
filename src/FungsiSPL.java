@@ -14,7 +14,7 @@ public class FungsiSPL {
         //ALGORITMA
 
         //Mengubah ke dalam matrix coefHasil
-        for (i = 0; i < mTemp.row ; i ++ ){
+        for (i = 0; (i < mTemp.row) && (i < mTemp.col - 1) ; i ++ ){
             coefHasil.Mat[i][0] = mTemp.Mat[i][mTemp.col-1]; 
             for (j = i+1 ; j < mTemp.col-1 ; j++){
                 coefHasil.Mat[i][j] = (-1) * (mTemp.Mat[i][j]);
@@ -23,18 +23,20 @@ public class FungsiSPL {
 
         //Mencari hasil penyelesaian
         for (i = mTemp.row-1; i>=0; i--){
-            for (j = coefHasil.col-1 ; j>0; j--){
-                ratio = coefHasil.Mat[i][j];
-                for (k = coefHasil.col-1 ; k >= 0; k--){ 
-                    coefHasil.Mat[i][k] +=  ratio * coefHasil.Mat[j][k];
-                }
-                if ((coefHasil.Mat[j][0] != 0) && (coefHasil.isRowSPLZero(j, 1, coefHasil.col-1))){
-                    coefHasil.Mat[i][j] = 0;
+            if (i < mTemp.col-1){
+                for (j = coefHasil.col-1 ; j>0; j--){
+                    ratio = coefHasil.Mat[i][j];
+                    for (k = coefHasil.col-1 ; k >= 0; k--){ 
+                        coefHasil.Mat[i][k] +=  ratio * coefHasil.Mat[j][k];
+                    }
+                    if ((coefHasil.Mat[j][0] != 0) && (coefHasil.isRowSPLZero(j, 1, coefHasil.col-1))){
+                        coefHasil.Mat[i][j] = 0;
+                    }
                 }
             }
         }
 
-        for (i=0; i<coefHasil.col; i++){
+        for (i=0; (i<coefHasil.col); i++){
             //Menjumlahkan penyelesaian dengan solusiunik
             for (j = 1 ; j < coefHasil.col; j++){
                 coefHasil.Mat[i][0] += coefHasil.Mat[i][j] * coefHasil.Mat[j][0];
@@ -58,6 +60,7 @@ public class FungsiSPL {
         //ALGORITMA
         //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
         mTemp = mTemp.konversiEselonMatriks();
+        InOut.tulisTerminalMatrix(mTemp);
 
         if (!mTemp.isMatriksUndef()){
             //Mengubah ke coefHasil
@@ -84,6 +87,7 @@ public class FungsiSPL {
             //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
             mTemp = mTemp.reduksiMatriks();
             mTemp = mTemp.eselonTereduksiMatriks();
+            InOut.tulisTerminalMatrix(mTemp);
 
             //Mengecek apakah undef
             if (!mTemp.isMatriksUndef()){
