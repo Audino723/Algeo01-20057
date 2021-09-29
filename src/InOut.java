@@ -204,15 +204,27 @@ public class InOut {
     public void tulisPenyelesaianSPL(String fileName, Matriks coefHasil){
         //KAMUS
         int i, j;
+        String[] ans = new String[coefHasil.row];
 
         //ALGORITMA
-        print(fileName, "Hasil penyelesaian SPL : \n");
+        //TESTING
+        //Mengecek apakah solusi unik
+        for (i = 0 ; i < coefHasil.row; i++){
+            if (coefHasil.isRowSPLZero(i, 0, coefHasil.col)){
+                ans[i] = ("a"+(i+1));
+            } else{
+                ans[i] = (String.format("%.2f",coefHasil.Mat[i][0]));
+            }
+        }
+
+        print(fileName, "\nHasil penyelesaian SPL : \n");
         for (i=0; i<coefHasil.col; i++){
             //Menampilkan X ke-
-            print(fileName, ("X" + (i+1) + " = " + (String.format("%.2f",coefHasil.Mat[i][0]))));
+            print(fileName, ("X" + (i+1) + " = " + ans[i]));
+
 
             //Menampilkan penyelesaian bukan solusi unik
-            for (j = 1 ; j < coefHasil.col; j++){
+            for (j = i+1 ; j < coefHasil.col; j++){
                 if ((i!=j) && coefHasil.isRowSPLZero(j, 0, coefHasil.col-1)){
                     if (coefHasil.Mat[i][j] != 0){
                         print(fileName, (" + " + (String.format("%.2f", (coefHasil.Mat[i][j]))) + "(a" + (j+1) + ")"));

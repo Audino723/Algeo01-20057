@@ -1,1 +1,7 @@
-Hasil penyelesaian tidak valid, tidak dapat menggunakan metode tersebut
+
+Hasil penyelesaian SPL : 
+X1 = 3.00 + 1.00(a2) + 1.00(a5)
+X2 = 0.00 + 2.00(a5)
+X3 = a3
+X4 = -1.00 + 1.00(a5)
+X5 = a5
