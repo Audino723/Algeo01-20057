@@ -6,11 +6,12 @@ public class TestJava {
     public static InOut io = new InOut();
 
     public static void main(String[] args) {
-        nomor1();
-        nomor2();
-        nomor3();
-        nomor5();
+        // nomor1();
+        // nomor2();
+        // nomor3();
+        // nomor5();
         nomor6a();
+        nomor6b();
     }
 
     public static void nomor1() {
@@ -153,33 +154,33 @@ public class TestJava {
         ArrayList<String> input = new ArrayList<String>();
         input.add("4"); // operasi
         input.add("2"); // metode baca dari txt
-        input.add("test/Nomor6/6a.txt"); // nama txt asal
-        input.add("test/Nomor6/Hasil6a1.txt"); // nama txt tujuan
-        input.add("0.2"); // nilai Prediksi
+        input.add("test/Nomor6/6b.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6b1.txt"); // nama txt tujuan
+        input.add("7.516"); // nilai Prediksi
         mainTest(input);
         input.clear();
 
         input.add("4"); // operasi
         input.add("2"); // metode baca dari txt
-        input.add("test/Nomor6/6a.txt"); // nama txt asal
-        input.add("test/Nomor6/Hasil6a2.txt"); // nama txt tujuan
-        input.add("0.55"); // nilai Prediksi
+        input.add("test/Nomor6/6b.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6b2.txt"); // nama txt tujuan
+        input.add("8.322"); // nilai Prediksi
         mainTest(input);
         input.clear();
 
         input.add("4"); // operasi
         input.add("2"); // metode baca dari txt
-        input.add("test/Nomor6/6a.txt"); // nama txt asal
-        input.add("test/Nomor6/Hasil6a3.txt"); // nama txt tujuan
-        input.add("0.85"); // nilai Prediksi
+        input.add("test/Nomor6/6b.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6b3.txt"); // nama txt tujuan
+        input.add("9.166"); // nilai Prediksi
         mainTest(input);
         input.clear();
 
         input.add("4"); // operasi
         input.add("2"); // metode baca dari txt
-        input.add("test/Nomor6/6a.txt"); // nama txt asal
-        input.add("test/Nomor6/Hasil6a4.txt"); // nama txt tujuan
-        input.add("1.28"); // nilai Prediksi
+        input.add("test/Nomor6/6b.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6b4.txt"); // nama txt tujuan
+        input.add("6.433"); // nilai Prediksi
         mainTest(input);
         input.clear();
     }
