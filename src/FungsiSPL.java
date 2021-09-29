@@ -29,7 +29,7 @@ public class FungsiSPL {
                     for (k = coefHasil.col-1 ; k >= 0; k--){ 
                         coefHasil.Mat[i][k] +=  ratio * coefHasil.Mat[j][k];
                     }
-                    if ((coefHasil.Mat[j][0] != 0) && (coefHasil.isRowSPLZero(j, 1, coefHasil.col-1))){
+                    if (!(coefHasil.isRowSPLZero(j, j+1, coefHasil.col))){
                         coefHasil.Mat[i][j] = 0;
                     }
                 }
@@ -199,7 +199,7 @@ public class FungsiSPL {
 
     public static double zigmaNormalEquation(Matriks matriks, int firstCol, int secCol){
         //KAMUS
-        int i, j;
+        int i;
         double temp = 0, a, b;
         //ALGORITMA
         for (i=0; i<matriks.row; i++){

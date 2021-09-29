@@ -205,9 +205,9 @@ public class InOut {
         //KAMUS
         int i, j;
         String[] ans = new String[coefHasil.row];
-
         //ALGORITMA
         //TESTING
+        InOut.tulisTerminalMatrix(coefHasil);
         //Mengecek apakah solusi unik
         for (i = 0 ; i < coefHasil.row; i++){
             if (coefHasil.isRowSPLZero(i, 0, coefHasil.col)){
