@@ -87,7 +87,8 @@ public class Matriks {
         for (i = 0; i < m.row; i++) {
             isZero = true;
             for (j = 0; j < m.col; j++) {
-                if (Math.round(m.Mat[i][j]) != 0) {
+                double temp = Math.round(m.Mat[i][j]*100.0)/100.0;
+                if (temp != 0) {
                     isZero = false;
                     break;
                 }
@@ -103,6 +104,7 @@ public class Matriks {
         int i;
         boolean isZero;
         isZero = true;
+
         for (i = iStart; i < this.row; i++) {
             if (this.Mat[i][jStart] != 0) {
                 isZero = false;
@@ -280,7 +282,7 @@ public class Matriks {
             }
         }
 
-        for(j = 0; j < m.col-1; j++) {
+        for(j = 0; j < m.col; j++) {
             if(m.isZeroRowExist(m)) {
                 identity = false;
                 break;
@@ -317,7 +319,7 @@ public class Matriks {
                     konstanta = (float)m.Mat[j][j]/(float)m.Mat[i][j];
                     ubahKurangBaris(m, i, j, konstanta);
                     ubahKurangBaris(identitas,i,j,konstanta);
-                    if(m.isZeroColExist(0,j) || m.isZeroRowExist(m)) {
+                    if(m.isZeroRowExist(m)) {
                         identity = false;
                         break;
                     }
@@ -328,49 +330,62 @@ public class Matriks {
             }
         }
         if(identity) {
-            for(j = m.col-1; j >= 1; j--) {
-            if(m.isZeroRowExist(m)) {
-                identity = false;
-                break;
-            }
-            if(m.Mat[j][j] == 0) {
-                a = j;
-                while(m.Mat[a][a] == 0) {
-                    if(m.Mat[a+1][a] != 0) {
-                        ubahTambahBaris(m,a,a+1);
-                        ubahTambahBaris(identitas,a,a+1);
-                        break;
-                    } 
-                    a++;
-                    if(a == m.col) {
-                        a = 0;
-                    }
-                }
-            }
-            if(m.Mat[j][j] != 1) {
-                konstanta = 1/(float)m.Mat[j][j];
-                ubahKaliBaris(m, j, konstanta);
-                ubahKaliBaris(identitas,j,konstanta);
-            }
-            for(i = j-1; i >= 0; i--) {
-                if(m.Mat[i][j] != 0) {
-                    konstanta = (float)m.Mat[j][j]/(float)m.Mat[i][j];
-                    ubahKurangBaris(m, i, j, konstanta);
-                    ubahKurangBaris(identitas,i,j,konstanta);
-                    if(m.isZeroColExist(0,j) || m.isZeroRowExist(m)) {
-                        identity = false;
-                        break;
-                    }
-                }
-                if(!identity) {
+            for(j = m.col-1; j >= 0; j--) {
+                if(m.isZeroRowExist(m)) {
+                    identity = false;
                     break;
                 }
+                if(m.Mat[j][j] == 0) {
+                    a = j;
+                    while(m.Mat[a][j] == 0) {
+                        if(a == m.row-1) {
+                            if(m.Mat[0][j] != 0) {
+                                ubahTambahBaris(m,a,0);
+                                ubahTambahBaris(identitas,a,0);
+                                System.out.println(a);
+                                break;
+                            }
+                            a = 0;
+                        } else {
+                            if(m.Mat[a+1][j] != 0) {
+                                ubahTambahBaris(m,a,a+1);
+                                ubahTambahBaris(identitas,a,a+1);
+                                System.out.println(a);
+                                break;
+                            }
+                        }
+                        a++;
+                    }
+                }
+                if(m.Mat[j][j] != 1) {
+                    konstanta = 1/(float)m.Mat[j][j];
+                    ubahKaliBaris(m, j, konstanta);
+                    ubahKaliBaris(identitas,j,konstanta);
+                }
+                for(i = j-1; i >= 0; i--) {
+                    if(m.Mat[i][j] != 0) {
+                        konstanta = (float)m.Mat[j][j]/(float)m.Mat[i][j];
+                        ubahKurangBaris(m, i, j, konstanta);
+                        ubahKurangBaris(identitas,i,j,konstanta);
+                        if(m.isZeroRowExist(m)) {
+                            identity = false;
+                            break;
+                        }
+                    }
+                    if(!identity) {
+                        break;
+                    }
+                }
             }
-        }
-
-            for(i = 0; i < m.col;i++) {
-                for(j=0;j<m.row;j++) {
-                    identitas.Mat[i][j] = Math.round((identitas.Mat[i][j] * 100)) / 100.0;
+            InOut.tulisTerminalMatrix(m);
+            System.out.println(identity);
+            if(!identity) {
+                identitas.undefMatriks();
+            } else {
+                for(i = 0; i < m.col;i++) {
+                    for(j=0;j<m.row;j++) {
+                        identitas.Mat[i][j] = Math.round((identitas.Mat[i][j] * 100)) / 100.0;
+                    }
                 }
             }
             return identitas;
