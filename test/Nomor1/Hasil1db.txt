@@ -1,3 +1,4 @@
+
 Hasil penyelesaian SPL : 
 X1 = 57.33
 X2 = -1142.35

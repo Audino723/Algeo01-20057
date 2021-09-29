@@ -36,6 +36,14 @@ public class TestJava {
 
         input.add("1"); // operasi
         input.add("2"); // metode baca dari txt
+        input.add("test/Nomor1/1b.txt"); // nama txt asal
+        input.add("test/Nomor1/Hasil1bgaussjordan.txt"); // nama txt tujuan
+        input.add("2"); // metode operasi
+        mainTest(input);
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1c.txt"); // nama txt asal
         input.add("test/Nomor1/Hasil1c.txt"); // nama txt tujuan
         input.add("2"); // metode operasi
@@ -197,6 +205,19 @@ public class TestJava {
         input.add("test/Nomor6/6c.txt"); // txt menyimpan hasil fungsi
         input.add("5"); // berapa range nya
         bikinTxt6c(input);
+        mainTest(input);
+        input.clear();
+
+    }
+    
+    public static void nomor7() {
+        ArrayList<String> input = new ArrayList<String>();
+        
+        input.add("5"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/7.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil7.txt"); // nama txt tujuan
+        input.add("50 76 29.3"); // nilai Prediksi
         mainTest(input);
         input.clear();
 
@@ -512,7 +533,7 @@ public class TestJava {
             System.out.println("2. Baca dari file txt");
 
             System.out.print(">321 ");
-            inputMethod = scanner.nextInt();
+            inputMethod = Integer.parseInt(input.get(1));
 
             switch (inputMethod) {
                 case 1:
@@ -539,7 +560,7 @@ public class TestJava {
                     System.out.println();
                     System.out.println("| Masukkan nama file beserta extensi txt |");
                     System.out.print(">284 ");
-                    fileName = input.get(3);
+                    fileName = input.get(2);
                     matriks = io.bacaTxtMatriks(fileName);
                     break;
 
@@ -575,8 +596,7 @@ public class TestJava {
             // Menampilkan penyelesaian
             predX = new Matriks(1, rowMat + 1);
             System.out.println("\n|Nilai x yang ingin diprediksi : |");
-            inputX = scanner.next();
-            inputX += scanner.nextLine();
+            inputX = input.get(4);
             predX.Mat[0] = InOut.method(inputX, rowMat - 1);
 
             InOut.tulisPenyelesaianRegresi(fileName, matriksRegresi, matriksHasil, predX);

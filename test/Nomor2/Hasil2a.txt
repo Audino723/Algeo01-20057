@@ -1,5 +1,6 @@
+
 Hasil penyelesaian SPL : 
 X1 = -1.00 + 1.00(a4)
 X2 = 0.00 + 2.00(a3)
-X3 = 0.00
-X4 = 0.00
+X3 = a3
+X4 = a4
