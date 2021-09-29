@@ -158,7 +158,7 @@ public class Matriks {
             }
 
             //Mengecek apakah ada nilai (i,i) yang nol
-            while ((i < mTemp.col-1) && (k + i < mTemp.row) && (mTemp.Mat[i + k][i] == 0)) {
+            while ((i < mTemp.col-1) && (k + i < mTemp.row-1) && (mTemp.Mat[i + k][i] == 0)) {
                 k++;
                 if (mTemp.Mat[i + k][i] != 0) {
                     for (j = 0; j < mTemp.col; ++j) {
