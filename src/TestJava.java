@@ -1,14 +1,60 @@
-// test case kalo input matriks salah untuk determinan kofatkro
-// test case undef untuk balikan adjoin
+import java.util.*;
 
-import java.util.Scanner;
-
-public class Main {
+public class TestJava {
     public static int command;
     public static Scanner scanner = new Scanner(System.in);
     public static InOut io = new InOut();
 
     public static void main(String[] args) {
+        nomor1();
+    }
+
+    public static void nomor1() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor1/1a.txt"); // nama txt asal
+        input.add("test/Nomor1/Hasil1a.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor1/1b.txt"); // nama txt asal
+        input.add("test/Nomor1/Hasil1b.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor1/1c.txt"); // nama txt asal
+        input.add("test/Nomor1/Hasil1c.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor1/1da.txt"); // nama txt asal
+        input.add("test/Nomor1/Hasil1da.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor1/1db.txt"); // nama txt asal
+        input.add("test/Nomor1/Hasil1db.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+
+    }
+
+    public static void mainTest(ArrayList<String> input) {
         /* Kamus */
 
         /* Algoritma */
@@ -21,35 +67,36 @@ public class Main {
             System.out.println("5. Regresi linier berganda");
             System.out.println("6. Keluar");
             System.out.print(">23 ");
-            command = scanner.nextInt();
+            command = Integer.parseInt(input.get(0));
             switch (command) {
                 case 1:
-                    SPL();
+                    SPL(input);
                     break;
                 case 2:
-                    Determinan();
+                    Determinan(input);
                     break;
+
                 case 3:
-                    Balikan();
+                    Balikan(input);
                     break;
                 case 4:
-                    InterpolasiPolinom();
+                    InterpolasiPolinom(input);
                     break;
                 case 5:
-                    RegresiLinier();
+                    RegresiLinier(input);
                     break;
 
                 default:
                     System.out.println("Masukkan command tidak valid");
             }
-
+            command = 6;
             System.out.println();
         } while (command != 6);
         scanner.close();
 
     }
 
-    public static void SPL() {
+    public static void SPL(ArrayList<String> input) {
         // KAMUS
         Matriks matrix;
         int opMethod;
@@ -57,7 +104,7 @@ public class Main {
         String fileName;
 
         // ALGORITMA
-        matrix = flowBacaMatriks();
+        matrix = flowBacaMatriks(input);
 
         if (matrix.isMatriksUndef()) {
             System.out.println("Matriks tidak valid");
@@ -65,7 +112,7 @@ public class Main {
             System.out.println();
             System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
             System.out.print(">124 ");
-            fileName = scanner.next();
+            fileName = input.get(3);
             io.buatTxtBaru(fileName);
 
             System.out.println();
@@ -78,7 +125,7 @@ public class Main {
             do {
 
                 System.out.print(">129 ");
-                opMethod = scanner.nextInt();
+                opMethod = Integer.parseInt(input.get(4));
 
                 switch (opMethod) {
                     case 1:
@@ -103,6 +150,7 @@ public class Main {
 
             if (matrix.isMatriksUndef()) {
                 InOut.print(fileName, "Hasil penyelesaian tidak valid, tidak dapat menggunakan metode tersebut");
+
             } else if (opMethod == 1 || opMethod == 2) {
                 io.tulisPenyelesaianSPL(fileName, matrix);
             }
@@ -110,20 +158,20 @@ public class Main {
 
     }
 
-    public static void Determinan() {
+    public static void Determinan(ArrayList<String> input) {
         Matriks matrix;
         double det;
         int opMethod;
         String fileName;
 
-        matrix = flowBacaMatriks();
+        matrix = flowBacaMatriks(input);
         if (matrix.isMatriksUndef()) {
             System.out.println("Matriks tidak valid");
         } else {
             System.out.println();
             System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
             System.out.print(">185 ");
-            fileName = scanner.next();
+            fileName = input.get(3);
             io.buatTxtBaru(fileName);
 
             System.out.println();
@@ -134,7 +182,7 @@ public class Main {
             do {
 
                 System.out.print(">180 ");
-                opMethod = scanner.nextInt();
+                opMethod = Integer.parseInt(input.get(4));
 
                 switch (opMethod) {
                     case 1:
@@ -159,20 +207,20 @@ public class Main {
 
     }
 
-    public static void Balikan() {
+    public static void Balikan(ArrayList<String> input) {
         // KAMUS
         Matriks matrix;
         int opMethod;
         String fileName;
         // ALGORITMA
-        matrix = flowBacaMatriks();
+        matrix = flowBacaMatriks(input);
         if (matrix.isMatriksUndef()) {
             System.out.println("Matriks tidak valid");
         } else {
             System.out.println();
             System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
             System.out.print(">256 ");
-            fileName = scanner.next();
+            fileName = input.get(3);
             io.buatTxtBaru(fileName);
 
             System.out.println();
@@ -183,7 +231,7 @@ public class Main {
             do {
 
                 System.out.print("> ");
-                opMethod = scanner.nextInt();
+                opMethod = Integer.parseInt(input.get(4));
 
                 switch (opMethod) {
                     case 1:
@@ -201,15 +249,15 @@ public class Main {
             } while (opMethod == 0);
 
             if (matrix.isMatriksUndef()) {
-                InOut.print(fileName,"Hasil penyelesaian tidak valid, tidak dapat menggunakan metode tersebut");
-                } else if (opMethod == 1 || opMethod == 2) {
+                InOut.print(fileName, "Hasil penyelesaian tidak valid, tidak dapat menggunakan metode tersebut");
+            } else if (opMethod == 1 || opMethod == 2) {
                 io.tulisTerminalMatrix(fileName, matrix);
             }
         }
 
     }
 
-    public static void InterpolasiPolinom() {
+    public static void InterpolasiPolinom(ArrayList<String> input) {
         // KAMUS
         Matriks matriksSPL;
         Matriks matriks = new Matriks(1, 1);
@@ -252,7 +300,7 @@ public class Main {
                     System.out.println();
                     System.out.println("| Masukkan nama file beserta extensi txt |");
                     System.out.print(">257 ");
-                    fileName = scanner.next();
+                    fileName = input.get(3);
                     matriks = io.bacaTxtMatriks(fileName);
                     break;
 
@@ -281,7 +329,7 @@ public class Main {
             System.out.println();
             System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
             System.out.print(">285 ");
-            fileName = scanner.next();
+            fileName = input.get(3);
             io.buatTxtBaru(fileName);
 
             // Mencari penyelesaian menggunakan Gauss-Jordan
@@ -297,7 +345,7 @@ public class Main {
 
     }
 
-    public static void RegresiLinier() {
+    public static void RegresiLinier(ArrayList<String> input) {
         // KAMUS
         Matriks matriksRegresi, matriksHasil;
         Matriks matriks = new Matriks(1, 1), predX;
@@ -343,7 +391,7 @@ public class Main {
                     System.out.println();
                     System.out.println("| Masukkan nama file beserta extensi txt |");
                     System.out.print(">284 ");
-                    fileName = scanner.next();
+                    fileName = input.get(3);
                     matriks = io.bacaTxtMatriks(fileName);
                     break;
 
@@ -370,7 +418,7 @@ public class Main {
             System.out.println();
             System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
             System.out.print(">285 ");
-            fileName = scanner.next();
+            fileName = input.get(3);
             io.buatTxtBaru(fileName);
 
             // Mencari penyelesaian menggunakan Gauss-Jordan
@@ -387,7 +435,7 @@ public class Main {
         }
     }
 
-    public static Matriks flowBacaMatriks() {
+    public static Matriks flowBacaMatriks(ArrayList<String> input) {
         int inputMethod;
         Matriks matrix = new Matriks(1, 1);
         String namaFile;
@@ -399,7 +447,7 @@ public class Main {
             System.out.println("2. Baca dari file txt");
 
             System.out.print(">268 ");
-            inputMethod = scanner.nextInt();
+            inputMethod = Integer.parseInt(input.get(1));
 
             switch (inputMethod) {
                 case 1:
@@ -414,7 +462,7 @@ public class Main {
                     System.out.println();
                     System.out.println("| Masukkan nama file beserta extensi txt |");
                     System.out.print(">284 ");
-                    namaFile = scanner.next();
+                    namaFile = input.get(2);
                     matrix = io.bacaTxtMatriks(namaFile);
                     break;
                 default:
