@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class InOut {
     
-    static double[] method(String str, int col) {
+    public static double[] method(String str, int col) {
         int i;
 
         String[] splitArray = str.split(" ");
@@ -321,6 +321,35 @@ public class InOut {
         print(fileName, ("\nP" + (n-1) + "(" + predX + ") = " + (String.format(" %.4f",temp))));
         
 
+
+    }
+
+    //InOut Regresi
+    public static void tulisPenyelesaianRegresi(String fileName, Matriks matriks, Matriks matriksHasil, Matriks predX){
+        //KAMUS
+        int i, j, n = matriks.row;
+        double temp = matriksHasil.Mat[0][0];
+
+        //ALGORITMA
+        //Menampilkan polinom
+        print(fileName, ("\nDari data-data yang ada, diperoleh SPL sebagai berikut:\n"));
+        for (i = 0; i<n;i++ ){
+            for (j=0; j<n+1;j++){
+                print(fileName, ((String.format(" %.4f",matriks.Mat[i][j])) ));
+                if (j<n-1){
+                    print(fileName, ("b" + j + " + "));
+                } else if (j == n-1){
+                    print(fileName, ("b" + j + " = "));
+                }
+            }
+            print(fileName, "\n");
+        }
+
+        //Mencari hasil prediksi
+        for (i = 1; i<n;i++){
+            temp += predX.Mat[0][i-1] * matriksHasil.Mat[i][0];
+        }
+        print(fileName, ("Hasil prediksi : " + (String.format(" %.4f",temp))));
 
     }
 }

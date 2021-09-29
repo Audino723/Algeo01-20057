@@ -230,7 +230,7 @@ public class Main {
             System.out.println("1. Baca dari terminal");
             System.out.println("2. Baca dari file txt");
 
-            System.out.print(">236 ");
+            System.out.print(">233 ");
             inputMethod = scanner.nextInt();
 
             switch (inputMethod) {
@@ -254,7 +254,7 @@ public class Main {
                 case 2:
                     System.out.println();
                     System.out.println("| Masukkan nama file beserta extensi txt |");
-                    System.out.print(">284 ");
+                    System.out.print(">257 ");
                     fileName = scanner.next();
                     matriks = io.bacaTxtMatriks(fileName);
                     break;
@@ -301,7 +301,94 @@ public class Main {
     }
 
     public static void RegresiLinier(){
+        //KAMUS
+        Matriks matriksRegresi, matriksHasil;
+        Matriks matriks = new Matriks(1, 1), predX;
+        int inputMethod;
+        int x, m, i, j, rowMat;
+        String fileName, inputX;
+        double temp;
+        Scanner scanner = new Scanner(System.in);
 
+        //ALGORITMA
+
+        do {
+            System.out.println();
+            System.out.println("| Pilih cara untuk membaca x dan y! |");
+            System.out.println("1. Baca dari terminal");
+            System.out.println("2. Baca dari file txt");
+
+            System.out.print(">321 ");
+            inputMethod = scanner.nextInt();
+
+            switch (inputMethod) {
+                case 1:
+                    do{
+                        System.out.println("Masukkan jumlah peubah x: ");
+                        x = scanner.nextInt();
+                        System.out.println("Masukkan jumlah sampel m: ");
+                        m = scanner.nextInt();
+                        
+                    }while(m<=0 && x<=0);
+            
+                    matriks = new Matriks(m, x+1);
+
+                    //Menerima semua titik
+                    for (i = 0; i < m ; i ++){
+                        for (j = 0 ; j < x+1 ; j++){
+                            matriks.Mat[i][j] = scanner.nextDouble();
+                        }
+                    }                  
+
+                    break;
+
+                case 2:
+                    System.out.println();
+                    System.out.println("| Masukkan nama file beserta extensi txt |");
+                    System.out.print(">284 ");
+                    fileName = scanner.next();
+                    matriks = io.bacaTxtMatriks(fileName);
+                    break;
+
+                default:
+                    inputMethod = 0;
+                    System.out.println("Masukkan untuk metode membaca x dan y tidak valid");
+                    break;
+            }
+        } while (inputMethod == 0);
+
+        //Menconvert titik menjadi matriks Regresi
+        rowMat = matriks.col;
+        matriksRegresi = new Matriks(rowMat, rowMat+1);
+        for (i = 0; i < rowMat ; i ++){
+            for (j = 0 ; j < rowMat+1 ; j++){
+                matriksRegresi.Mat[i][j] = FungsiSPL.zigmaNormalEquation(matriks, i, j);
+            }
+        }
+
+        //Menampilkan hasil Interpolasi Polinom
+        if (matriks.isMatriksUndef()){
+            System.out.println("Titik-titik tidak valid");
+        } else{
+            System.out.println();
+            System.out.println("| Masukkan nama file untuk menuliskan hasil operasi!! (beserta extensi .txt) |");
+            System.out.print(">285 ");
+            fileName = scanner.next();
+            io.buatTxtBaru(fileName);
+
+            //Mencari penyelesaian menggunakan Gauss-Jordan
+            matriksHasil = FungsiSPL.splGaussJordan(matriksRegresi);
+            InOut.tulisTerminalMatrix(matriksHasil);
+            //Menampilkan penyelesaian
+            predX = new Matriks(1, rowMat+1);
+            System.out.println("\n|Nilai x yang ingin diprediksi : |");
+            inputX = scanner.next();
+            inputX += scanner.nextLine();
+            predX.Mat[0] = InOut.method(inputX, rowMat-1) ;
+            
+            
+            InOut.tulisPenyelesaianRegresi(fileName, matriksRegresi, matriksHasil, predX);
+        }
     }
 
     public static Matriks flowBacaMatriks() {

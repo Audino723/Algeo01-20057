@@ -75,13 +75,14 @@ public class FungsiSPL {
             Sebelum perhitungan, akan diinisialisasi sebuah matriks 1 x (column-1), yang akan menampung koefisien hasil perhitungan.
         */
             //KAMUS
-            Matriks mTemp = matrix.reduksiMatriks();
+            Matriks mTemp = matrix.copyMatriks();
             Matriks coefHasil;
     
             //Inisialisasi coefHasil
     
             //ALGORITMA
             //Mengubah matriks tereduksi menjadi matriks tereduksi eselon
+            mTemp = mTemp.reduksiMatriks();
             mTemp = mTemp.eselonTereduksiMatriks();
 
             //Mengecek apakah undef
@@ -187,5 +188,28 @@ public class FungsiSPL {
             System.out.println("Tidak ada penyelesaian SPL Cramer pada matriks ini, sebab tidak berbentuk n x n");
         }
 
+    }
+
+    public static double zigmaNormalEquation(Matriks matriks, int firstCol, int secCol){
+        //KAMUS
+        int i, j;
+        double temp = 0, a, b;
+        //ALGORITMA
+        for (i=0; i<matriks.row; i++){
+            if (firstCol == 0){
+                a = 1;
+            }else{
+                a = matriks.Mat[i][firstCol-1];
+            }
+            if (secCol == 0){
+                b = 1;
+            }else{
+                b = matriks.Mat[i][secCol-1];
+            }
+
+            temp += a * b;
+        }
+
+        return temp;
     }
 }

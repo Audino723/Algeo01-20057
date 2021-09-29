@@ -45,6 +45,21 @@ public class Matriks {
         return (this.col == -1 && this.row == -1);
     }
 
+    public Matriks copyMatriks(){
+        //KAMUS
+        Matriks mCopy = new Matriks(this.row, this.col);
+        int i, j;
+
+        //ALGORITMA
+        for (i = 0; i< mCopy.row; i++){
+            for (j = 0; j < mCopy.col; j++){
+                mCopy.Mat[i][j] = this.Mat[i][j];
+            }
+        } 
+
+        return mCopy;
+    }
+
     //Perlu dimerge sama punya mikel
     public boolean isRowSPLZero (int i, int jStart, int jMax){
         /*
