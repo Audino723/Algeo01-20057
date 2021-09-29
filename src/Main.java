@@ -426,4 +426,31 @@ public class Main {
         return matrix;
 
     }
+
+    public static double fungsi6c(double X) {
+        Double y;
+        y = Math.pow(X, 2);
+        y = y + Math.sqrt(X);
+        y = y / (Math.exp(X) + X);
+        
+        return y;
+    }
+
+    public static void bikinTxt6c() {
+        String fileName,line;
+        int n;
+        double range, y, x;
+        fileName = scanner.next();
+        io.buatTxtBaru(fileName);
+
+        n = scanner.nextInt();
+
+        range = 2 / n;
+
+        for (x = 0; x <= 2; x += range) {
+            y = fungsi6c(x);
+            line =  Double.toString(x) +" "+ Double.toString(y);
+            InOut.write(fileName,line);
+        }
+    }
 }

@@ -1,0 +1,4 @@
+
+Polinom Interpolasi yang melewati 3 titik tersebut adalah :
+P2(x) = 0.0000 + 1.4605x + -1.0332x^2
+P2(7.516) =  -47.3864

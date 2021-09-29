@@ -6,12 +6,13 @@ public class TestJava {
     public static InOut io = new InOut();
 
     public static void main(String[] args) {
-        // nomor1();
-        // nomor2();
-        // nomor3();
-        // nomor5();
+        nomor1();
+        nomor2();
+        nomor3();
+        nomor5();
         nomor6a();
         nomor6b();
+        nomor6c();
     }
 
     public static void nomor1() {
@@ -20,7 +21,7 @@ public class TestJava {
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1a.txt"); // nama txt asal
         input.add("test/Nomor1/Hasil1a.txt"); // nama txt tujuan
-        input.add("1"); // metode operasi
+        input.add("2"); // metode operasi
         mainTest(input);
         input.clear();
         input.clear();
@@ -28,7 +29,7 @@ public class TestJava {
         input.add("1"); // operasi
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1b.txt"); // nama txt asal
-        input.add("test/Nomor1/Hasil1b.txt"); // nama txt tujuan
+        input.add("test/Nomor1/Hasil1bgauss.txt"); // nama txt tujuan
         input.add("1"); // metode operasi
         mainTest(input);
         input.clear();
@@ -37,7 +38,7 @@ public class TestJava {
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1c.txt"); // nama txt asal
         input.add("test/Nomor1/Hasil1c.txt"); // nama txt tujuan
-        input.add("1"); // metode operasi
+        input.add("2"); // metode operasi
         mainTest(input);
         input.clear();
 
@@ -45,7 +46,7 @@ public class TestJava {
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1da.txt"); // nama txt asal
         input.add("test/Nomor1/Hasil1da.txt"); // nama txt tujuan
-        input.add("1"); // metode operasi
+        input.add("2"); // metode operasi
         mainTest(input);
         input.clear();
 
@@ -53,7 +54,7 @@ public class TestJava {
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor1/1db.txt"); // nama txt asal
         input.add("test/Nomor1/Hasil1db.txt"); // nama txt tujuan
-        input.add("1"); // metode operasi
+        input.add("2"); // metode operasi
         mainTest(input);
         input.clear();
 
@@ -183,6 +184,22 @@ public class TestJava {
         input.add("6.433"); // nilai Prediksi
         mainTest(input);
         input.clear();
+    }
+
+    public static void nomor6c() {
+        ArrayList<String> input = new ArrayList<String>();
+        
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6c.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6c1.txt"); // nama txt tujuan
+        input.add("7.516"); // nilai Prediksi
+        input.add("test/Nomor6/6c.txt"); // txt menyimpan hasil fungsi
+        input.add("5"); // berapa range nya
+        bikinTxt6c(input);
+        mainTest(input);
+        input.clear();
+
     }
     
     public static void mainTest(ArrayList<String> input) {
@@ -604,5 +621,36 @@ public class TestJava {
         } while (inputMethod == 0);
         return matrix;
 
+    }
+
+    public static double fungsi6c(double X) {
+        Double y;
+        y = Math.pow(X, 2);
+        y = y + Math.sqrt(X);
+        y = y / (Math.exp(X) + X);
+        
+        return y;
+    }
+
+    public static void bikinTxt6c(ArrayList<String> input) {
+        String fileName,line;
+        int n;
+        double range, y, x;
+        
+        fileName = input.get(5);
+        io.buatTxtBaru(fileName);
+
+        n = Integer.parseInt(input.get(6));
+
+        range = 2.0 / n;
+
+        x = 0;
+        while (x<=2.0) {
+            y = fungsi6c(x);
+            line =  Double.toString(x) +" "+ Double.toString(y) + "\n";
+            InOut.write(fileName,line);
+            x += range;
+        }
+        
     }
 }

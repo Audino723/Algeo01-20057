@@ -277,6 +277,19 @@ public class InOut {
         }
     }
 
+    public static void write(String fileName, String str) {
+
+        try {
+            FileWriter writer = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            bufferedWriter.write(str);
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();// TODO: handle exception
+        }
+    }
+
     //Inout Interpolasi
     public static void tulisPenyelesaianInterpolasi(String fileName, Matriks matriks, double predX){
         //KAMUS
