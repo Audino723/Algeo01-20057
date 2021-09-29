@@ -109,15 +109,16 @@ public class FungsiSPL {
 
         // Algoritma
         mvalue = new Matriks(m.row,m.col-1);
+
         for(i = 0; i < m.row;i++) {
             for(j=0; j < m.col-1;j++) {
                 mvalue.Mat[i][j] = m.Mat[i][j];
             }
         }
         for(i = 0; i < m.row; i++) {
-            B[i] = mvalue.Mat[i][m.col-1];
+            B[i] = m.Mat[i][m.col-1];
         }
-        if(m.col != m.row) {
+        if(m.col - 1 != m.row) {
             System.out.println("Tidak ada solusi SPL untuk matriks ini sebab tidak memiliki ukuran n x n");
         } else {
             mtemp = Matriks.MatriksIdentitas(mvalue);
@@ -126,10 +127,12 @@ public class FungsiSPL {
             } else {
                 for(i = 0; i < m.row; i++) {
                     X[i] = 0;
-                    for(j = 0; j < m.col; j++) {
+                    for(j = 0; j < m.col - 1; j++) {
                         X[i] += B[j] * mtemp.Mat[i][j];
                     }
-                    X[i] = Math.round((X[i] * 100)) / 100.0;
+                    // X[i] = Math.round(X[i] * 100) / 100.0;
+                    X[i] = (double) Math.round(X[i]);
+                    System.out.println(X[i]);
                 }
                 io.tulisPenyelesaianSPLNotAugmented(fileName, X);
             }

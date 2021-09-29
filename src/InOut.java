@@ -156,19 +156,6 @@ public class InOut {
             return matriks;
         }
 
-    public static double[] bacaTerminalMatrixBalikan(Matriks m) {
-        //Kamus Lokal
-            int i;
-        //Algoritma
-            Scanner scanner = new Scanner(System.in);
-            double[] B = new double[m.row];
-            System.out.println("Masukkan elemen dalam kolom B: ");
-            for (i = 0; i < m.row; i++) {
-                B[i] = scanner.nextDouble();
-            }
-            return B;
-        }
-
     public static void tulisTerminalMatrix(Matriks matriks) {
         //Kamus Lokal
             int i, j;
