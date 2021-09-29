@@ -7,6 +7,10 @@ public class TestJava {
 
     public static void main(String[] args) {
         nomor1();
+        nomor2();
+        nomor3();
+        nomor5();
+        nomor6a();
     }
 
     public static void nomor1() {
@@ -54,6 +58,132 @@ public class TestJava {
 
     }
 
+    public static void nomor2() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor2/2a.txt"); // nama txt asal
+        input.add("test/Nomor2/Hasil2a.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor2/2b.txt"); // nama txt asal
+        input.add("test/Nomor2/Hasil2b.txt"); // nama txt tujuan
+        input.add("2"); // metode operasi //
+        mainTest(input); // BUTUH PERHATIAN
+        input.clear();
+
+
+    }
+
+    public static void nomor3() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor3/3a.txt"); // nama txt asal
+        input.add("test/Nomor3/Hasil3a.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+        input.clear();
+
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor3/3b.txt"); // nama txt asal
+        input.add("test/Nomor3/Hasil3b.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input); // BUTUH PERHATIAN
+        input.clear();
+
+
+    }
+
+    public static void nomor5() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("1"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor5/5.txt"); // nama txt asal
+        input.add("test/Nomor5/Hasil5.txt"); // nama txt tujuan
+        input.add("1"); // metode operasi
+        mainTest(input);
+        input.clear();
+        input.clear();
+    }
+
+    public static void nomor6a() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a1.txt"); // nama txt tujuan
+        input.add("0.2"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a2.txt"); // nama txt tujuan
+        input.add("0.55"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a3.txt"); // nama txt tujuan
+        input.add("0.85"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a4.txt"); // nama txt tujuan
+        input.add("1.28"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+    }
+    
+    public static void nomor6b() {
+        ArrayList<String> input = new ArrayList<String>();
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a1.txt"); // nama txt tujuan
+        input.add("0.2"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a2.txt"); // nama txt tujuan
+        input.add("0.55"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a3.txt"); // nama txt tujuan
+        input.add("0.85"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+
+        input.add("4"); // operasi
+        input.add("2"); // metode baca dari txt
+        input.add("test/Nomor6/6a.txt"); // nama txt asal
+        input.add("test/Nomor6/Hasil6a4.txt"); // nama txt tujuan
+        input.add("1.28"); // nilai Prediksi
+        mainTest(input);
+        input.clear();
+    }
+    
     public static void mainTest(ArrayList<String> input) {
         /* Kamus */
 
@@ -276,7 +406,7 @@ public class TestJava {
             System.out.println("2. Baca dari file txt");
 
             System.out.print(">233 ");
-            inputMethod = scanner.nextInt();
+            inputMethod = Integer.parseInt(input.get(1));
 
             switch (inputMethod) {
                 case 1:
@@ -300,7 +430,7 @@ public class TestJava {
                     System.out.println();
                     System.out.println("| Masukkan nama file beserta extensi txt |");
                     System.out.print(">257 ");
-                    fileName = input.get(3);
+                    fileName = input.get(2);
                     matriks = io.bacaTxtMatriks(fileName);
                     break;
 
@@ -338,7 +468,7 @@ public class TestJava {
             // Menampilkan penyelesaian
             System.out.println("\n|Nilai x yang ingin diprediksi : |");
             System.out.print(">295 ");
-            predX = scanner.nextDouble();
+            predX = Double.parseDouble(input.get(4));
 
             InOut.tulisPenyelesaianInterpolasi(fileName, matriksSPL, predX);
         }
