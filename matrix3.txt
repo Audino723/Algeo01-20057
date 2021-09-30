@@ -1,4 +1,0 @@
-Hasil penyelesaian SPL : 
-X1 = -1.67
-X2 = 1.33
-X3 = 1.67
