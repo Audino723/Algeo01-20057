@@ -1,4 +1,4 @@
 
-Polinom Interpolasi yang melewati 3 titik tersebut adalah :
-P2(x) = 0.0000 + 1.4605x + -1.0332x^2
-P2(7.516) =  -47.3864
+Polinom Interpolasi yang melewati 6 titik tersebut adalah :
+P5(x) = 0.0000 + 2.0353x + -3.5527x^2 + 3.2371x^3 + -1.4213x^4 + 0.2363x^5
+P5(9.0) =  6716.1719

@@ -1,4 +1,4 @@
 
-Polinom Interpolasi yang melewati 3 titik tersebut adalah :
-P2(x) = 2738.6788 + -824.4466x + 62.3317x^2
-P2(8.322) =  194.4602
+Polinom Interpolasi yang melewati 10 titik tersebut adalah :
+P9(x) = 7189658260.8541 + -9350004106.8759x + 5335755583.4209x^2 + -1757276569.3335x^3 + 368640761.9913x^4 + -51143429.4023x^5 + 4696794.2217x^6 + -275528.7814x^7 + 9374.5844x^8 + -141.0184x^9
+P9(8.322) =  36.3524

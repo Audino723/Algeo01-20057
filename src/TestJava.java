@@ -119,6 +119,7 @@ public class TestJava {
         input.clear();
         
     }
+    
     public static void nomor5() {
         ArrayList<String> input = new ArrayList<String>();
         input.add("1"); // operasi
@@ -208,7 +209,7 @@ public class TestJava {
         input.add("2"); // metode baca dari txt
         input.add("test/Nomor6/6c.txt"); // nama txt asal
         input.add("test/Nomor6/Hasil6c1.txt"); // nama txt tujuan
-        input.add("7.516"); // nilai Prediksi
+        input.add("9"); // nilai Prediksi
         input.add("test/Nomor6/6c.txt"); // txt menyimpan hasil fungsi
         input.add("5"); // berapa range nya
         bikinTxt6c(input);
@@ -488,7 +489,7 @@ public class TestJava {
         } while (inputMethod == 0);
 
         // Menconvert titik menjadi splAugmented
-        n = matriks.col + 1;
+        n = matriks.row;
         matriksSPL = new Matriks(n, n + 1);
         for (i = 0; i < n; i++) {
             temp = matriks.Mat[i][0];

@@ -1,4 +1,4 @@
 
-Polinom Interpolasi yang melewati 3 titik tersebut adalah :
-P2(x) = -0.0226 + 0.2350x + 0.2125x^2
-P2(1.28) =  0.6263
+Polinom Interpolasi yang melewati 7 titik tersebut adalah :
+P6(x) = -0.0230 + 0.2400x + 0.1974x^2 + 0.0000x^3 + 0.0260x^4 + 0.0000x^5 + -0.0000x^6
+P6(1.28) =  0.6775
